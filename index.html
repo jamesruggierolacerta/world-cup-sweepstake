@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,26 +8,38 @@
   <style>
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
     h1 { margin-bottom: 8px; }
-    .meta { color:#555; margin-bottom: 18px; }
+    .meta { color:#555; margin-bottom: 14px; }
+    .small { font-size: 12px; color:#555; }
+
     .grid { display: grid; grid-template-columns: 1fr; gap: 26px; }
     @media (min-width: 1100px){ .grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; } }
+
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ddd; padding: 8px; font-size: 14px; }
     th { background: #f7f7f7; text-align: left; position: sticky; top: 0; z-index: 1; }
-    .small { font-size: 12px; color:#555; }
+
     .search { margin: 10px 0; width: 100%; padding: 8px; font-size: 14px; }
     .pill { display:inline-block; background:#eef; border:1px solid #dde; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
     .teams { white-space: nowrap; }
+
+    .recent-wrap { border:1px solid #ddd; background:#fafafa; padding:10px; }
+    .recent-title { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+    .recent { max-height: 140px; overflow: auto; margin-top: 8px; }
+    .recent ul { margin: 0; padding-left: 18px; }
+    .recent li { margin: 6px 0; }
+
+    code { background:#f2f2f2; padding: 1px 4px; border-radius: 4px; }
   </style>
 </head>
 <body>
   <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
   <div class="meta">
-    <div>Goals count in normal time + extra time. Penalty shootout goals are excluded.</div>
+    <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
     <div id="updated" class="small">Loading…</div>
   </div>
 
-  <div class="grid">
+  <div class="grid" style="margin-top:18px;">
+    <!-- LEFT: Ticket league table -->
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
@@ -47,9 +60,18 @@
       </div>
     </section>
 
+    <!-- RIGHT: Recent finished matches (top) + Goals by team (below) -->
     <section>
+      <div class="recent-wrap" style="margin-bottom:14px;">
+        <div class="recent-title">
+          <h2 style="margin:0;">Recently applied finished matches</h2>
+          <div class="small">Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)</div>
+        </div>
+        <div class="recent" id="recent"></div>
+      </div>
+
       <h2>Goals by Team</h2>
-      <div style="overflow:auto; max-height: 75vh; border:1px solid #ddd;">
+      <div style="overflow:auto; max-height: 60vh; border:1px solid #ddd;">
         <table id="teamsTable">
           <thead>
             <tr>
@@ -69,15 +91,21 @@
     </section>
   </div>
 
-
 <script>
+  // Cache-bust so you never need ?v=1 again
+  const CACHE_BUST = `?t=${Date.now()}`;
+  const TEAMS_URL = `./standings/teams.json${CACHE_BUST}`;
+  const RECENT_URL = `./standings/recent_finished.json${CACHE_BUST}`;
+  const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
 
-const CACHE_BUST = `?t=${Date.now()}`;
-const TEAMS_URL = `./standings/teams.json${CACHE_BUST}`;
-const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
-
-
-  function esc(s){ return String(s).replace(/[&<>\"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, m => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;'
+    }[m] || m));
+  }
 
   function renderStandings(rows){
     const tbody = document.querySelector('#standingsTable tbody');
@@ -113,41 +141,87 @@ const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
     }
   }
 
+  function fmtMatch(m){
+    const dt = m.utcDate ? new Date(m.utcDate) : null;
+    const when = dt ? dt.toLocaleString() : '';
+    const ft = `${m.ft.home}-${m.ft.away}`;
+    const et = m.et ? `, ET ${m.et.home}-${m.et.away}` : '';
+    return `${esc(m.home)} vs ${esc(m.away)} — FT ${ft}${et}${when ? ' ('+when+')' : ''}`;
+  }
+
+  function renderRecent(matches){
+    const el = document.getElementById('recent');
+    if(!matches || matches.length === 0){
+      el.innerHTML = '<div class="small">No finished matches applied yet.</div>';
+      return;
+    }
+    el.innerHTML = '<ul>' + matches.map(m => `<li>${fmtMatch(m)}</li>`).join('') + '</ul>';
+  }
+
+  let allStandings = [];
+
   function buildStandings(tickets, teamsData){
     const teamMap = new Map();
     for(const t of (teamsData.teams || [])) teamMap.set(t.team, t);
 
     const rows = (tickets || []).map(tk => {
-      const goals = tk.teams.reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
-      const gd = tk.teams.reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
-      return { ticket:tk.ticket, owner:tk.owner, teams:tk.teams, goals, gd, rank:(tk.rank ?? tk.ticket) };
+      const goals = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
+      const gd = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
+      return {
+        ticket: tk.ticket,
+        owner: tk.owner,
+        teams: tk.teams,
+        goals,
+        gd,
+        rank: (tk.rank ?? tk.ticket) // used for tie-breaker #3, not displayed
+      };
     });
 
+    // Sort: goals desc, gd desc, weakest combo wins (higher rank)
     rows.sort((a,b)=>{
-      if(b.goals!==a.goals) return b.goals-a.goals;
-      if(b.gd!==a.gd) return b.gd-a.gd;
-      return b.rank-a.rank;
+      if(b.goals !== a.goals) return b.goals - a.goals;
+      if(b.gd !== a.gd) return b.gd - a.gd;
+      return b.rank - a.rank;
     });
 
-    rows.forEach((r,i)=> r.position=i+1);
+    rows.forEach((r,i)=> r.position = i+1);
     return rows;
   }
 
   async function load(){
-    const [teamsData, tickets] = await Promise.all([
-      fetch(TEAMS_URL,{cache:'no-store'}).then(r=>r.json()),
-      fetch(TICKETS_URL,{cache:'no-store'}).then(r=>r.json())
+    const [teamsData, recentData, tickets] = await Promise.all([
+      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json()),
+      fetch(RECENT_URL, {cache:'no-store'}).then(r=>r.json()),
+      fetch(TICKETS_URL, {cache:'no-store'}).then(r=>r.json())
     ]);
 
     document.getElementById('updated').textContent =
       teamsData.generated_at ? `Last updated: ${teamsData.generated_at}` : 'Last updated: unknown';
 
-    renderTeams(teamsData.teams || []);
-    renderStandings(buildStandings(tickets, teamsData));
+    const teams = (teamsData.teams || []).slice().sort(
+      (a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team)
+    );
+    renderTeams(teams);
+
+    renderRecent((recentData && recentData.matches) ? recentData.matches : []);
+
+    allStandings = buildStandings(tickets, teamsData);
+    renderStandings(allStandings);
   }
 
+  document.getElementById('search').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if(!q){ renderStandings(allStandings); return; }
+    renderStandings(allStandings.filter(r =>
+      String(r.ticket).includes(q) ||
+      String(r.owner).toLowerCase().includes(q) ||
+      (r.teams || []).some(t => String(t).toLowerCase().includes(q))
+    ));
+  });
+
   load();
-  setInterval(load,120000);
+  setInterval(load, 120000);
 </script>
 </body>
 </html>
+``
