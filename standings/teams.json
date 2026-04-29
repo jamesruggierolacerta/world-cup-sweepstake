@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-04-29T22:02:33.003074Z",
+  "generated_at": "2026-04-29T22:52:59.659303Z",
   "teams": [
     {
       "team": "Argentina",
-      "gf": 5,
+      "gf": 0,
       "ga": 0,
-      "gd": 5,
-      "played": 1
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "Belgium",
-      "gf": 3,
-      "ga": 2,
-      "gd": 1,
-      "played": 1
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "Brazil",
@@ -45,10 +45,10 @@
     },
     {
       "team": "England",
-      "gf": 2,
-      "ga": 1,
-      "gd": 1,
-      "played": 2
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "France",
