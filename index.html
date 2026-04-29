@@ -70,8 +70,8 @@
   </div>
 
 
-<script>
-  const TEAMS_URL = './standings/teams.json';
+
+ const TEAMS_URL = './standings/teams.json';
   const TICKETS_URL = './data/tickets.json';
 
   function esc(s){ return String(s).replace(/[&<>\"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
@@ -110,25 +110,20 @@
     }
   }
 
-  let allStandings = [];
-
   function buildStandings(tickets, teamsData){
     const teamMap = new Map();
     for(const t of (teamsData.teams || [])) teamMap.set(t.team, t);
 
     const rows = (tickets || []).map(tk => {
-      const teams = tk.teams || [];
-      const goals = teams.reduce((sum, nm) => sum + (teamMap.get(nm)?.gf || 0), 0);
-      const gd = teams.reduce((sum, nm) => sum + (teamMap.get(nm)?.gd || 0), 0);
-      const rank = (tk.rank ?? tk.ticket); // used for tie-breaker #3 behind the scenes
-      return { ticket: tk.ticket, owner: tk.owner, teams, goals, gd, rank };
+      const goals = tk.teams.reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
+      const gd = tk.teams.reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
+      return { ticket:tk.ticket, owner:tk.owner, teams:tk.teams, goals, gd, rank:(tk.rank ?? tk.ticket) };
     });
 
-    // Sort: goals desc, gd desc, weakest combo wins (higher rank)
-    rows.sort((a,b) => {
-      if (b.goals !== a.goals) return b.goals - a.goals;
-      if (b.gd !== a.gd) return b.gd - a.gd;
-      return b.rank - a.rank;
+    rows.sort((a,b)=>{
+      if(b.goals!==a.goals) return b.goals-a.goals;
+      if(b.gd!==a.gd) return b.gd-a.gd;
+      return b.rank-a.rank;
     });
 
     rows.forEach((r,i)=> r.position=i+1);
@@ -137,33 +132,19 @@
 
   async function load(){
     const [teamsData, tickets] = await Promise.all([
-      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json()),
-      fetch(TICKETS_URL, {cache:'no-store'}).then(r=>r.json())
+      fetch(TEAMS_URL,{cache:'no-store'}).then(r=>r.json()),
+      fetch(TICKETS_URL,{cache:'no-store'}).then(r=>r.json())
     ]);
 
     document.getElementById('updated').textContent =
       teamsData.generated_at ? `Last updated: ${teamsData.generated_at}` : 'Last updated: unknown';
 
-    const teams = (teamsData.teams || []).slice()
-      .sort((a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team));
-    renderTeams(teams);
-
-    allStandings = buildStandings(tickets, teamsData);
-    renderStandings(allStandings);
+    renderTeams(teamsData.teams || []);
+    renderStandings(buildStandings(tickets, teamsData));
   }
 
-  document.getElementById('search').addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    if(!q){ renderStandings(allStandings); return; }
-    renderStandings(allStandings.filter(r =>
-      String(r.ticket).includes(q) ||
-      String(r.owner).toLowerCase().includes(q) ||
-      (r.teams || []).some(t => String(t).toLowerCase().includes(q))
-    ));
-  });
-
   load();
-  setInterval(load, 120000);
+  setInterval(load,120000);
 </script>
 </body>
 </html>
