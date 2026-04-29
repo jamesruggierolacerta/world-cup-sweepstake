@@ -20,9 +20,9 @@
   </style>
 </head>
 <body>
-  <h1>World Cup 2026 Goal Sweepstake</h1>
+  <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
   <div class="meta">
-    <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
+    <div>Goals count in normal time + extra time. Penalty shootout goals are excluded.</div>
     <div id="updated" class="small">Loading…</div>
   </div>
 
@@ -71,8 +71,11 @@
 
 
 <script>
- const TEAMS_URL = './standings/teams.json';
-  const TICKETS_URL = './data/tickets.json';
+
+const CACHE_BUST = `?t=${Date.now()}`;
+const TEAMS_URL = `./standings/teams.json${CACHE_BUST}`;
+const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
+
 
   function esc(s){ return String(s).replace(/[&<>\"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
 
