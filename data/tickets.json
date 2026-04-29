@@ -1,0 +1,3432 @@
+[
+  {
+    "ticket": 1,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 1
+  },
+  {
+    "ticket": 2,
+    "owner": "Name 24",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 2
+  },
+  {
+    "ticket": 3,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 3
+  },
+  {
+    "ticket": 4,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 4
+  },
+  {
+    "ticket": 5,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 5
+  },
+  {
+    "ticket": 6,
+    "owner": "Name 34",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 6
+  },
+  {
+    "ticket": 7,
+    "owner": "Name 13",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 7
+  },
+  {
+    "ticket": 8,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 8
+  },
+  {
+    "ticket": 9,
+    "owner": "Name 57",
+    "teams": [
+      "Spain",
+      "Norway",
+      "USA"
+    ],
+    "rank": 9
+  },
+  {
+    "ticket": 10,
+    "owner": "Name 50",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 10
+  },
+  {
+    "ticket": 11,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 11
+  },
+  {
+    "ticket": 12,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 12
+  },
+  {
+    "ticket": 13,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 13
+  },
+  {
+    "ticket": 14,
+    "owner": "Name 26",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 14
+  },
+  {
+    "ticket": 15,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 15
+  },
+  {
+    "ticket": 16,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Norway",
+      "USA"
+    ],
+    "rank": 16
+  },
+  {
+    "ticket": 17,
+    "owner": "Name 56",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 17
+  },
+  {
+    "ticket": 18,
+    "owner": "Name 42",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 18
+  },
+  {
+    "ticket": 19,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 19
+  },
+  {
+    "ticket": 20,
+    "owner": "Name 20",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 20
+  },
+  {
+    "ticket": 21,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 21
+  },
+  {
+    "ticket": 22,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 22
+  },
+  {
+    "ticket": 23,
+    "owner": "Name 58",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 23
+  },
+  {
+    "ticket": 24,
+    "owner": "Name 17",
+    "teams": [
+      "England",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 24
+  },
+  {
+    "ticket": 25,
+    "owner": "Name 33",
+    "teams": [
+      "England",
+      "Norway",
+      "USA"
+    ],
+    "rank": 25
+  },
+  {
+    "ticket": 26,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 26
+  },
+  {
+    "ticket": 27,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 27
+  },
+  {
+    "ticket": 28,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 28
+  },
+  {
+    "ticket": 29,
+    "owner": "Name 19",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 29
+  },
+  {
+    "ticket": 30,
+    "owner": "Name 41",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 30
+  },
+  {
+    "ticket": 31,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 31
+  },
+  {
+    "ticket": 32,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 32
+  },
+  {
+    "ticket": 33,
+    "owner": "Name 37",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 33
+  },
+  {
+    "ticket": 34,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 34
+  },
+  {
+    "ticket": 35,
+    "owner": "Name 54",
+    "teams": [
+      "France",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 35
+  },
+  {
+    "ticket": 36,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 36
+  },
+  {
+    "ticket": 37,
+    "owner": "Name 33",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 37
+  },
+  {
+    "ticket": 38,
+    "owner": "Name 13",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 38
+  },
+  {
+    "ticket": 39,
+    "owner": "Name 52",
+    "teams": [
+      "Spain",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 39
+  },
+  {
+    "ticket": 40,
+    "owner": "Name 22",
+    "teams": [
+      "England",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 40
+  },
+  {
+    "ticket": 41,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 41
+  },
+  {
+    "ticket": 42,
+    "owner": "Name 60",
+    "teams": [
+      "England",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 42
+  },
+  {
+    "ticket": 43,
+    "owner": "Name 29",
+    "teams": [
+      "France",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 43
+  },
+  {
+    "ticket": 44,
+    "owner": "Name 31",
+    "teams": [
+      "France",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 44
+  },
+  {
+    "ticket": 45,
+    "owner": "Name 66",
+    "teams": [
+      "France",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 45
+  },
+  {
+    "ticket": 46,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 46
+  },
+  {
+    "ticket": 47,
+    "owner": "Name 49",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 47
+  },
+  {
+    "ticket": 48,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 48
+  },
+  {
+    "ticket": 49,
+    "owner": "Name 24",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 49
+  },
+  {
+    "ticket": 50,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 50
+  },
+  {
+    "ticket": 51,
+    "owner": "Name 22",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 51
+  },
+  {
+    "ticket": 52,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 52
+  },
+  {
+    "ticket": 53,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 53
+  },
+  {
+    "ticket": 54,
+    "owner": "Name 15",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 54
+  },
+  {
+    "ticket": 55,
+    "owner": "Name 61",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 55
+  },
+  {
+    "ticket": 56,
+    "owner": "Name 64",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 56
+  },
+  {
+    "ticket": 57,
+    "owner": "Name 31",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 57
+  },
+  {
+    "ticket": 58,
+    "owner": "Name 38",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 58
+  },
+  {
+    "ticket": 59,
+    "owner": "Name 3",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 59
+  },
+  {
+    "ticket": 60,
+    "owner": "Name 9",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 60
+  },
+  {
+    "ticket": 61,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "USA"
+    ],
+    "rank": 61
+  },
+  {
+    "ticket": 62,
+    "owner": "Name 14",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 62
+  },
+  {
+    "ticket": 63,
+    "owner": "Name 4",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "USA"
+    ],
+    "rank": 63
+  },
+  {
+    "ticket": 64,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 64
+  },
+  {
+    "ticket": 65,
+    "owner": "Name 1",
+    "teams": [
+      "England",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 65
+  },
+  {
+    "ticket": 66,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 66
+  },
+  {
+    "ticket": 67,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 67
+  },
+  {
+    "ticket": 68,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 68
+  },
+  {
+    "ticket": 69,
+    "owner": "Name 55",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 69
+  },
+  {
+    "ticket": 70,
+    "owner": "Name 7",
+    "teams": [
+      "France",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 70
+  },
+  {
+    "ticket": 71,
+    "owner": "Name 52",
+    "teams": [
+      "France",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 71
+  },
+  {
+    "ticket": 72,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 72
+  },
+  {
+    "ticket": 73,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 73
+  },
+  {
+    "ticket": 74,
+    "owner": "Name 29",
+    "teams": [
+      "France",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 74
+  },
+  {
+    "ticket": 75,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 75
+  },
+  {
+    "ticket": 76,
+    "owner": "Name 26",
+    "teams": [
+      "France",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 76
+  },
+  {
+    "ticket": 77,
+    "owner": "Name 38",
+    "teams": [
+      "France",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 77
+  },
+  {
+    "ticket": 78,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 78
+  },
+  {
+    "ticket": 79,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 79
+  },
+  {
+    "ticket": 80,
+    "owner": "Name 24",
+    "teams": [
+      "England",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 80
+  },
+  {
+    "ticket": 81,
+    "owner": "Name 52",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 81
+  },
+  {
+    "ticket": 82,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Japan",
+      "USA"
+    ],
+    "rank": 82
+  },
+  {
+    "ticket": 83,
+    "owner": "Name 5",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 83
+  },
+  {
+    "ticket": 84,
+    "owner": "Name 24",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 84
+  },
+  {
+    "ticket": 85,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 85
+  },
+  {
+    "ticket": 86,
+    "owner": "Name 43",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 86
+  },
+  {
+    "ticket": 87,
+    "owner": "Name 66",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 87
+  },
+  {
+    "ticket": 88,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 88
+  },
+  {
+    "ticket": 89,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 89
+  },
+  {
+    "ticket": 90,
+    "owner": "Name 20",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 90
+  },
+  {
+    "ticket": 91,
+    "owner": "Name 64",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 91
+  },
+  {
+    "ticket": 92,
+    "owner": "Name 52",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 92
+  },
+  {
+    "ticket": 93,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 93
+  },
+  {
+    "ticket": 94,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 94
+  },
+  {
+    "ticket": 95,
+    "owner": "Name 48",
+    "teams": [
+      "England",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 95
+  },
+  {
+    "ticket": 96,
+    "owner": "Name 15",
+    "teams": [
+      "England",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 96
+  },
+  {
+    "ticket": 97,
+    "owner": "Name 6",
+    "teams": [
+      "England",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 97
+  },
+  {
+    "ticket": 98,
+    "owner": "Name 46",
+    "teams": [
+      "England",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 98
+  },
+  {
+    "ticket": 99,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 99
+  },
+  {
+    "ticket": 100,
+    "owner": "Name 8",
+    "teams": [
+      "England",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 100
+  },
+  {
+    "ticket": 101,
+    "owner": "Name 46",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Mexico"
+    ],
+    "rank": 101
+  },
+  {
+    "ticket": 102,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "USA"
+    ],
+    "rank": 102
+  },
+  {
+    "ticket": 103,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 103
+  },
+  {
+    "ticket": 104,
+    "owner": "Name 2",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 104
+  },
+  {
+    "ticket": 105,
+    "owner": "Name 14",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 105
+  },
+  {
+    "ticket": 106,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 106
+  },
+  {
+    "ticket": 107,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 107
+  },
+  {
+    "ticket": 108,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 108
+  },
+  {
+    "ticket": 109,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 109
+  },
+  {
+    "ticket": 110,
+    "owner": "Name 22",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 110
+  },
+  {
+    "ticket": 111,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 111
+  },
+  {
+    "ticket": 112,
+    "owner": "Name 10",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 112
+  },
+  {
+    "ticket": 113,
+    "owner": "Name 35",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 113
+  },
+  {
+    "ticket": 114,
+    "owner": "Name 53",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 114
+  },
+  {
+    "ticket": 115,
+    "owner": "Name 4",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "USA"
+    ],
+    "rank": 115
+  },
+  {
+    "ticket": 116,
+    "owner": "Name 13",
+    "teams": [
+      "France",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 116
+  },
+  {
+    "ticket": 117,
+    "owner": "Name 9",
+    "teams": [
+      "France",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 117
+  },
+  {
+    "ticket": 118,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Japan",
+      "USA"
+    ],
+    "rank": 118
+  },
+  {
+    "ticket": 119,
+    "owner": "Name 1",
+    "teams": [
+      "France",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 119
+  },
+  {
+    "ticket": 120,
+    "owner": "Name 20",
+    "teams": [
+      "France",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 120
+  },
+  {
+    "ticket": 121,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 121
+  },
+  {
+    "ticket": 122,
+    "owner": "Name 22",
+    "teams": [
+      "France",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 122
+  },
+  {
+    "ticket": 123,
+    "owner": "Name 2",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 123
+  },
+  {
+    "ticket": 124,
+    "owner": "Name 28",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 124
+  },
+  {
+    "ticket": 125,
+    "owner": "Name 20",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 125
+  },
+  {
+    "ticket": 126,
+    "owner": "Name 65",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 126
+  },
+  {
+    "ticket": 127,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 127
+  },
+  {
+    "ticket": 128,
+    "owner": "Name 26",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 128
+  },
+  {
+    "ticket": 129,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 129
+  },
+  {
+    "ticket": 130,
+    "owner": "Name 54",
+    "teams": [
+      "Spain",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 130
+  },
+  {
+    "ticket": 131,
+    "owner": "Name 18",
+    "teams": [
+      "Spain",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 131
+  },
+  {
+    "ticket": 132,
+    "owner": "Name 7",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 132
+  },
+  {
+    "ticket": 133,
+    "owner": "Name 3",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 133
+  },
+  {
+    "ticket": 134,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 134
+  },
+  {
+    "ticket": 135,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 135
+  },
+  {
+    "ticket": 136,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Switzerland"
+    ],
+    "rank": 136
+  },
+  {
+    "ticket": 137,
+    "owner": "Name 61",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Turkey"
+    ],
+    "rank": 137
+  },
+  {
+    "ticket": 138,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Croatia"
+    ],
+    "rank": 138
+  },
+  {
+    "ticket": 139,
+    "owner": "Name 55",
+    "teams": [
+      "England",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 139
+  },
+  {
+    "ticket": 140,
+    "owner": "Name 15",
+    "teams": [
+      "England",
+      "Japan",
+      "USA"
+    ],
+    "rank": 140
+  },
+  {
+    "ticket": 141,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 141
+  },
+  {
+    "ticket": 142,
+    "owner": "Name 32",
+    "teams": [
+      "England",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 142
+  },
+  {
+    "ticket": 143,
+    "owner": "Name 59",
+    "teams": [
+      "England",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 143
+  },
+  {
+    "ticket": 144,
+    "owner": "Name 50",
+    "teams": [
+      "England",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 144
+  },
+  {
+    "ticket": 145,
+    "owner": "Name 45",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Mexico"
+    ],
+    "rank": 145
+  },
+  {
+    "ticket": 146,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Norway",
+      "USA"
+    ],
+    "rank": 146
+  },
+  {
+    "ticket": 147,
+    "owner": "Name 10",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 147
+  },
+  {
+    "ticket": 148,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 148
+  },
+  {
+    "ticket": 149,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 149
+  },
+  {
+    "ticket": 150,
+    "owner": "Name 26",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 150
+  },
+  {
+    "ticket": 151,
+    "owner": "Name 1",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 151
+  },
+  {
+    "ticket": 152,
+    "owner": "Name 31",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 152
+  },
+  {
+    "ticket": 153,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 153
+  },
+  {
+    "ticket": 154,
+    "owner": "Name 8",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 154
+  },
+  {
+    "ticket": 155,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 155
+  },
+  {
+    "ticket": 156,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 156
+  },
+  {
+    "ticket": 157,
+    "owner": "Name 5",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 157
+  },
+  {
+    "ticket": 158,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 158
+  },
+  {
+    "ticket": 159,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 159
+  },
+  {
+    "ticket": 160,
+    "owner": "Name 62",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 160
+  },
+  {
+    "ticket": 161,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 161
+  },
+  {
+    "ticket": 162,
+    "owner": "Name 41",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 162
+  },
+  {
+    "ticket": 163,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 163
+  },
+  {
+    "ticket": 164,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 164
+  },
+  {
+    "ticket": 165,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 165
+  },
+  {
+    "ticket": 166,
+    "owner": "Name 37",
+    "teams": [
+      "France",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 166
+  },
+  {
+    "ticket": 167,
+    "owner": "Name 49",
+    "teams": [
+      "France",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 167
+  },
+  {
+    "ticket": 168,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 168
+  },
+  {
+    "ticket": 169,
+    "owner": "Name 30",
+    "teams": [
+      "France",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 169
+  },
+  {
+    "ticket": 170,
+    "owner": "Name 37",
+    "teams": [
+      "France",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 170
+  },
+  {
+    "ticket": 171,
+    "owner": "Name 43",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 171
+  },
+  {
+    "ticket": 172,
+    "owner": "Name 48",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 172
+  },
+  {
+    "ticket": 173,
+    "owner": "Name 35",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 173
+  },
+  {
+    "ticket": 174,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 174
+  },
+  {
+    "ticket": 175,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 175
+  },
+  {
+    "ticket": 176,
+    "owner": "Name 35",
+    "teams": [
+      "France",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 176
+  },
+  {
+    "ticket": 177,
+    "owner": "Name 9",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 177
+  },
+  {
+    "ticket": 178,
+    "owner": "Name 9",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 178
+  },
+  {
+    "ticket": 179,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 179
+  },
+  {
+    "ticket": 180,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 180
+  },
+  {
+    "ticket": 181,
+    "owner": "Name 33",
+    "teams": [
+      "England",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 181
+  },
+  {
+    "ticket": 182,
+    "owner": "Name 15",
+    "teams": [
+      "England",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 182
+  },
+  {
+    "ticket": 183,
+    "owner": "Name 28",
+    "teams": [
+      "England",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 183
+  },
+  {
+    "ticket": 184,
+    "owner": "Name 54",
+    "teams": [
+      "England",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 184
+  },
+  {
+    "ticket": 185,
+    "owner": "Name 54",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 185
+  },
+  {
+    "ticket": 186,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 186
+  },
+  {
+    "ticket": 187,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 187
+  },
+  {
+    "ticket": 188,
+    "owner": "Name 16",
+    "teams": [
+      "Brazil",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 188
+  },
+  {
+    "ticket": 189,
+    "owner": "Name 41",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Switzerland"
+    ],
+    "rank": 189
+  },
+  {
+    "ticket": 190,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Turkey"
+    ],
+    "rank": 190
+  },
+  {
+    "ticket": 191,
+    "owner": "Name 38",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Croatia"
+    ],
+    "rank": 191
+  },
+  {
+    "ticket": 192,
+    "owner": "Name 35",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Ecuador"
+    ],
+    "rank": 192
+  },
+  {
+    "ticket": 193,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 193
+  },
+  {
+    "ticket": 194,
+    "owner": "Name 8",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 194
+  },
+  {
+    "ticket": 195,
+    "owner": "Name 27",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 195
+  },
+  {
+    "ticket": 196,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 196
+  },
+  {
+    "ticket": 197,
+    "owner": "Name 25",
+    "teams": [
+      "England",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 197
+  },
+  {
+    "ticket": 198,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 198
+  },
+  {
+    "ticket": 199,
+    "owner": "Name 65",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "USA"
+    ],
+    "rank": 199
+  },
+  {
+    "ticket": 200,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 200
+  },
+  {
+    "ticket": 201,
+    "owner": "Name 2",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 201
+  },
+  {
+    "ticket": 202,
+    "owner": "Name 33",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 202
+  },
+  {
+    "ticket": 203,
+    "owner": "Name 61",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "USA"
+    ],
+    "rank": 203
+  },
+  {
+    "ticket": 204,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 204
+  },
+  {
+    "ticket": 205,
+    "owner": "Name 60",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 205
+  },
+  {
+    "ticket": 206,
+    "owner": "Name 46",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 206
+  },
+  {
+    "ticket": 207,
+    "owner": "Name 27",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 207
+  },
+  {
+    "ticket": 208,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 208
+  },
+  {
+    "ticket": 209,
+    "owner": "Name 61",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 209
+  },
+  {
+    "ticket": 210,
+    "owner": "Name 54",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 210
+  },
+  {
+    "ticket": 211,
+    "owner": "Name 46",
+    "teams": [
+      "England",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 211
+  },
+  {
+    "ticket": 212,
+    "owner": "Name 3",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 212
+  },
+  {
+    "ticket": 213,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 213
+  },
+  {
+    "ticket": 214,
+    "owner": "Name 7",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Mexico"
+    ],
+    "rank": 214
+  },
+  {
+    "ticket": 215,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "USA"
+    ],
+    "rank": 215
+  },
+  {
+    "ticket": 216,
+    "owner": "Name 27",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Mexico"
+    ],
+    "rank": 216
+  },
+  {
+    "ticket": 217,
+    "owner": "Name 19",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "USA"
+    ],
+    "rank": 217
+  },
+  {
+    "ticket": 218,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 218
+  },
+  {
+    "ticket": 219,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 219
+  },
+  {
+    "ticket": 220,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 220
+  },
+  {
+    "ticket": 221,
+    "owner": "Name 5",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 221
+  },
+  {
+    "ticket": 222,
+    "owner": "Name 31",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 222
+  },
+  {
+    "ticket": 223,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 223
+  },
+  {
+    "ticket": 224,
+    "owner": "Name 8",
+    "teams": [
+      "France",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 224
+  },
+  {
+    "ticket": 225,
+    "owner": "Name 45",
+    "teams": [
+      "France",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 225
+  },
+  {
+    "ticket": 226,
+    "owner": "Name 58",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 226
+  },
+  {
+    "ticket": 227,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 227
+  },
+  {
+    "ticket": 228,
+    "owner": "Name 10",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 228
+  },
+  {
+    "ticket": 229,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 229
+  },
+  {
+    "ticket": 230,
+    "owner": "PTA",
+    "teams": [
+      "Spain",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 230
+  },
+  {
+    "ticket": 231,
+    "owner": "Name 15",
+    "teams": [
+      "England",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 231
+  },
+  {
+    "ticket": 232,
+    "owner": "Name 25",
+    "teams": [
+      "England",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 232
+  },
+  {
+    "ticket": 233,
+    "owner": "Name 21",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Ecuador"
+    ],
+    "rank": 233
+  },
+  {
+    "ticket": 234,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Netherlands",
+      "Senegal"
+    ],
+    "rank": 234
+  },
+  {
+    "ticket": 235,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 235
+  },
+  {
+    "ticket": 236,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 236
+  },
+  {
+    "ticket": 237,
+    "owner": "Name 40",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 237
+  },
+  {
+    "ticket": 238,
+    "owner": "Name 39",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 238
+  },
+  {
+    "ticket": 239,
+    "owner": "Name 25",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 239
+  },
+  {
+    "ticket": 240,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 240
+  },
+  {
+    "ticket": 241,
+    "owner": "Name 50",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 241
+  },
+  {
+    "ticket": 242,
+    "owner": "Name 50",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 242
+  },
+  {
+    "ticket": 243,
+    "owner": "Name 58",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 243
+  },
+  {
+    "ticket": 244,
+    "owner": "Name 63",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 244
+  },
+  {
+    "ticket": 245,
+    "owner": "Name 62",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 245
+  },
+  {
+    "ticket": 246,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 246
+  },
+  {
+    "ticket": 247,
+    "owner": "Name 56",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 247
+  },
+  {
+    "ticket": 248,
+    "owner": "Name 1",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 248
+  },
+  {
+    "ticket": 249,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 249
+  },
+  {
+    "ticket": 250,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 250
+  },
+  {
+    "ticket": 251,
+    "owner": "Name 30",
+    "teams": [
+      "Argentina",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 251
+  },
+  {
+    "ticket": 252,
+    "owner": "Name 36",
+    "teams": [
+      "Argentina",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 252
+  },
+  {
+    "ticket": 253,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 253
+  },
+  {
+    "ticket": 254,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 254
+  },
+  {
+    "ticket": 255,
+    "owner": "Name 38",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Switzerland"
+    ],
+    "rank": 255
+  },
+  {
+    "ticket": 256,
+    "owner": "Name 3",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Turkey"
+    ],
+    "rank": 256
+  },
+  {
+    "ticket": 257,
+    "owner": "Name 18",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Croatia"
+    ],
+    "rank": 257
+  },
+  {
+    "ticket": 258,
+    "owner": "Name 14",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Switzerland"
+    ],
+    "rank": 258
+  },
+  {
+    "ticket": 259,
+    "owner": "Name 47",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Turkey"
+    ],
+    "rank": 259
+  },
+  {
+    "ticket": 260,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Croatia"
+    ],
+    "rank": 260
+  },
+  {
+    "ticket": 261,
+    "owner": "Name 14",
+    "teams": [
+      "Portugal",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 261
+  },
+  {
+    "ticket": 262,
+    "owner": "Name 65",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 262
+  },
+  {
+    "ticket": 263,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 263
+  },
+  {
+    "ticket": 264,
+    "owner": "Name 56",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 264
+  },
+  {
+    "ticket": 265,
+    "owner": "Name 21",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 265
+  },
+  {
+    "ticket": 266,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 266
+  },
+  {
+    "ticket": 267,
+    "owner": "Name 12",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "USA"
+    ],
+    "rank": 267
+  },
+  {
+    "ticket": 268,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 268
+  },
+  {
+    "ticket": 269,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 269
+  },
+  {
+    "ticket": 270,
+    "owner": "Name 19",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 270
+  },
+  {
+    "ticket": 271,
+    "owner": "Name 41",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 271
+  },
+  {
+    "ticket": 272,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 272
+  },
+  {
+    "ticket": 273,
+    "owner": "PTA",
+    "teams": [
+      "France",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 273
+  },
+  {
+    "ticket": 274,
+    "owner": "Name 60",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 274
+  },
+  {
+    "ticket": 275,
+    "owner": "Name 27",
+    "teams": [
+      "England",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 275
+  },
+  {
+    "ticket": 276,
+    "owner": "Name 2",
+    "teams": [
+      "England",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 276
+  },
+  {
+    "ticket": 277,
+    "owner": "Name 33",
+    "teams": [
+      "Germany",
+      "Norway",
+      "Senegal"
+    ],
+    "rank": 277
+  },
+  {
+    "ticket": 278,
+    "owner": "Name 23",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 278
+  },
+  {
+    "ticket": 279,
+    "owner": "Name 27",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 279
+  },
+  {
+    "ticket": 280,
+    "owner": "Name 26",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 280
+  },
+  {
+    "ticket": 281,
+    "owner": "Name 41",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 281
+  },
+  {
+    "ticket": 282,
+    "owner": "Name 44",
+    "teams": [
+      "Spain",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 282
+  },
+  {
+    "ticket": 283,
+    "owner": "PTA",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 283
+  },
+  {
+    "ticket": 284,
+    "owner": "Name 60",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Mexico"
+    ],
+    "rank": 284
+  },
+  {
+    "ticket": 285,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Japan",
+      "USA"
+    ],
+    "rank": 285
+  },
+  {
+    "ticket": 286,
+    "owner": "Name 21",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Mexico"
+    ],
+    "rank": 286
+  },
+  {
+    "ticket": 287,
+    "owner": "Name 43",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "USA"
+    ],
+    "rank": 287
+  },
+  {
+    "ticket": 288,
+    "owner": "Name 7",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Ecuador"
+    ],
+    "rank": 288
+  },
+  {
+    "ticket": 289,
+    "owner": "Name 17",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Ecuador"
+    ],
+    "rank": 289
+  },
+  {
+    "ticket": 290,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 290
+  },
+  {
+    "ticket": 291,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 291
+  },
+  {
+    "ticket": 292,
+    "owner": "Name 37",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 292
+  },
+  {
+    "ticket": 293,
+    "owner": "Name 50",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 293
+  },
+  {
+    "ticket": 294,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 294
+  },
+  {
+    "ticket": 295,
+    "owner": "Name 10",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 295
+  },
+  {
+    "ticket": 296,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 296
+  },
+  {
+    "ticket": 297,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 297
+  },
+  {
+    "ticket": 298,
+    "owner": "Name 8",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 298
+  },
+  {
+    "ticket": 299,
+    "owner": "Name 11",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 299
+  },
+  {
+    "ticket": 300,
+    "owner": "Name 19",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 300
+  },
+  {
+    "ticket": 301,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 301
+  },
+  {
+    "ticket": 302,
+    "owner": "Name 42",
+    "teams": [
+      "Portugal",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 302
+  },
+  {
+    "ticket": 303,
+    "owner": "Name 16",
+    "teams": [
+      "Portugal",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 303
+  },
+  {
+    "ticket": 304,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 304
+  },
+  {
+    "ticket": 305,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 305
+  },
+  {
+    "ticket": 306,
+    "owner": "Name 65",
+    "teams": [
+      "France",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 306
+  },
+  {
+    "ticket": 307,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 307
+  },
+  {
+    "ticket": 308,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 308
+  },
+  {
+    "ticket": 309,
+    "owner": "Name 35",
+    "teams": [
+      "Brazil",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 309
+  },
+  {
+    "ticket": 310,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 310
+  },
+  {
+    "ticket": 311,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Switzerland"
+    ],
+    "rank": 311
+  },
+  {
+    "ticket": 312,
+    "owner": "Name 29",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Turkey"
+    ],
+    "rank": 312
+  },
+  {
+    "ticket": 313,
+    "owner": "Name 43",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Croatia"
+    ],
+    "rank": 313
+  },
+  {
+    "ticket": 314,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Switzerland"
+    ],
+    "rank": 314
+  },
+  {
+    "ticket": 315,
+    "owner": "Name 5",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Turkey"
+    ],
+    "rank": 315
+  },
+  {
+    "ticket": 316,
+    "owner": "Name 66",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Croatia"
+    ],
+    "rank": 316
+  },
+  {
+    "ticket": 317,
+    "owner": "Name 56",
+    "teams": [
+      "England",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 317
+  },
+  {
+    "ticket": 318,
+    "owner": "Name 37",
+    "teams": [
+      "Germany",
+      "Belgium",
+      "Senegal"
+    ],
+    "rank": 318
+  },
+  {
+    "ticket": 319,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Colombia",
+      "Senegal"
+    ],
+    "rank": 319
+  },
+  {
+    "ticket": 320,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 320
+  },
+  {
+    "ticket": 321,
+    "owner": "PTA",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 321
+  },
+  {
+    "ticket": 322,
+    "owner": "Name 55",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 322
+  },
+  {
+    "ticket": 323,
+    "owner": "Name 39",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 323
+  },
+  {
+    "ticket": 324,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Mexico"
+    ],
+    "rank": 324
+  },
+  {
+    "ticket": 325,
+    "owner": "Name 10",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "USA"
+    ],
+    "rank": 325
+  },
+  {
+    "ticket": 326,
+    "owner": "Name 51",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 326
+  },
+  {
+    "ticket": 327,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 327
+  },
+  {
+    "ticket": 328,
+    "owner": "Name 51",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 328
+  },
+  {
+    "ticket": 329,
+    "owner": "Name 18",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Ecuador"
+    ],
+    "rank": 329
+  },
+  {
+    "ticket": 330,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Ecuador"
+    ],
+    "rank": 330
+  },
+  {
+    "ticket": 331,
+    "owner": "PTA",
+    "teams": [
+      "Argentina",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 331
+  },
+  {
+    "ticket": 332,
+    "owner": "Name 31",
+    "teams": [
+      "Brazil",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 332
+  },
+  {
+    "ticket": 333,
+    "owner": "Name 56",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Switzerland"
+    ],
+    "rank": 333
+  },
+  {
+    "ticket": 334,
+    "owner": "Name 13",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Turkey"
+    ],
+    "rank": 334
+  },
+  {
+    "ticket": 335,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Croatia"
+    ],
+    "rank": 335
+  },
+  {
+    "ticket": 336,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 336
+  },
+  {
+    "ticket": 337,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 337
+  },
+  {
+    "ticket": 338,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 338
+  },
+  {
+    "ticket": 339,
+    "owner": "Name 44",
+    "teams": [
+      "Germany",
+      "Japan",
+      "Senegal"
+    ],
+    "rank": 339
+  },
+  {
+    "ticket": 340,
+    "owner": "Name 65",
+    "teams": [
+      "Germany",
+      "Morocco",
+      "Senegal"
+    ],
+    "rank": 340
+  },
+  {
+    "ticket": 341,
+    "owner": "Name 66",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Ecuador"
+    ],
+    "rank": 341
+  },
+  {
+    "ticket": 342,
+    "owner": "PTA",
+    "teams": [
+      "Portugal",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 342
+  },
+  {
+    "ticket": 343,
+    "owner": "PTA",
+    "teams": [
+      "Germany",
+      "Uruguay",
+      "Senegal"
+    ],
+    "rank": 343
+  }
+]

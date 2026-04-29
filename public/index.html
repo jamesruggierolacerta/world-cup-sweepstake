@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Cup 2026 Goal Sweepstake</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    h1 { margin-bottom: 8px; }
+    .meta { color:#555; margin-bottom: 18px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 26px; }
+    @media (min-width: 1100px){ .grid { grid-template-columns: 1.2fr 0.8fr; align-items: start; } }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; font-size: 14px; }
+    th { background: #f7f7f7; text-align: left; position: sticky; top: 0; z-index: 1; }
+    .small { font-size: 12px; color:#555; }
+    .search { margin: 10px 0; width: 100%; padding: 8px; font-size: 14px; }
+    .pill { display:inline-block; background:#eef; border:1px solid #dde; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+    .teams { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <h1>World Cup 2026 Goal Sweepstake</h1>
+  <div class="meta">
+    <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
+    <div id="updated" class="small">Loading…</div>
+  </div>
+
+  <div class="grid">
+    <section>
+      <h2>Ticket League Table</h2>
+      <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
+      <div style="overflow:auto; max-height: 75vh; border:1px solid #ddd;">
+        <table id="standingsTable">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Ticket</th>
+              <th>Owner</th>
+              <th>Teams</th>
+              <th>Goals</th>
+              <th>GD</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Goals by Team</h2>
+      <div style="overflow:auto; max-height: 75vh; border:1px solid #ddd;">
+        <table id="teamsTable">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
+              <th>P</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="small" style="margin-top:10px;">
+        Tip: if a team name doesn't match the data provider naming, update <code>data/team_name_map.json</code>.
+      </div>
+    </section>
+  </div>
+
+<script>
+  const STANDINGS_URL = './standings/standings.json';
+  const TEAMS_URL = './standings/teams.json';
+
+  function esc(s){ return String(s).replace(/[&<>"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
+
+  function renderStandings(rows){
+    const tbody = document.querySelector('#standingsTable tbody');
+    tbody.innerHTML = '';
+    for(const r of rows){
+      const teams = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${r.position}</td>
+        <td>${r.ticket}</td>
+        <td>${esc(r.owner)}</td>
+        <td class="teams">${teams}</td>
+        <td>${r.goals}</td>
+        <td>${r.gd}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function renderTeams(rows){
+    const tbody = document.querySelector('#teamsTable tbody');
+    tbody.innerHTML = '';
+    for(const r of rows){
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${esc(r.team)}</td>
+        <td>${r.gf}</td>
+        <td>${r.ga}</td>
+        <td>${r.gd}</td>
+        <td>${r.played}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+  }
+
+  let allStandings = [];
+
+  async function load(){
+    const [s,t] = await Promise.all([
+      fetch(STANDINGS_URL, {cache:'no-store'}).then(r=>r.json()),
+      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json())
+    ]);
+
+    const generated = s.generated_at || t.generated_at;
+    document.getElementById('updated').textContent = generated ? `Last updated: ${generated}` : 'Last updated: unknown';
+
+    allStandings = (s.standings || []);
+    renderStandings(allStandings);
+
+    const teams = (t.teams || []).slice().sort((a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team));
+    renderTeams(teams);
+  }
+
+  document.getElementById('search').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if(!q){ renderStandings(allStandings); return; }
+    const filtered = allStandings.filter(r => {
+      return String(r.ticket).includes(q) ||
+             String(r.owner).toLowerCase().includes(q) ||
+             (r.teams || []).some(t => String(t).toLowerCase().includes(q));
+    });
+    renderStandings(filtered);
+  });
+
+  load();
+  setInterval(load, 120000);
+</script>
+</body>
+</html>
