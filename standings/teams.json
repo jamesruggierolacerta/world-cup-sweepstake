@@ -3,10 +3,10 @@
   "teams": [
     {
       "team": "Argentina",
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "played": 0
+      "gf": 5,
+      "ga": 1,
+      "gd": 4,
+      "played": 1
     },
     {
       "team": "Belgium",
