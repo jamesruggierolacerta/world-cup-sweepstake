@@ -46,9 +46,9 @@
     {
       "team": "England",
       "gf": 2,
-      "ga": 0,
-      "gd": 0,
-      "played": 1
+      "ga": 1,
+      "gd": 1,
+      "played": 2
     },
     {
       "team": "France",
