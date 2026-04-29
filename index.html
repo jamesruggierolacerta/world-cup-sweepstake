@@ -69,11 +69,12 @@
     </section>
   </div>
 
-<script>
-  const STANDINGS_URL = './standings/standings.json';
-  const TEAMS_URL = './standings/teams.json';
 
-  function esc(s){ return String(s).replace(/[&<>"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
+<script>
+  const TEAMS_URL = './standings/teams.json';
+  const TICKETS_URL = './data/tickets.json';
+
+  function esc(s){ return String(s).replace(/[&<>\"]+/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m] || m)); }
 
   function renderStandings(rows){
     const tbody = document.querySelector('#standingsTable tbody');
@@ -111,31 +112,54 @@
 
   let allStandings = [];
 
+  function buildStandings(tickets, teamsData){
+    const teamMap = new Map();
+    for(const t of (teamsData.teams || [])) teamMap.set(t.team, t);
+
+    const rows = (tickets || []).map(tk => {
+      const teams = tk.teams || [];
+      const goals = teams.reduce((sum, nm) => sum + (teamMap.get(nm)?.gf || 0), 0);
+      const gd = teams.reduce((sum, nm) => sum + (teamMap.get(nm)?.gd || 0), 0);
+      const rank = (tk.rank ?? tk.ticket); // used for tie-breaker #3 behind the scenes
+      return { ticket: tk.ticket, owner: tk.owner, teams, goals, gd, rank };
+    });
+
+    // Sort: goals desc, gd desc, weakest combo wins (higher rank)
+    rows.sort((a,b) => {
+      if (b.goals !== a.goals) return b.goals - a.goals;
+      if (b.gd !== a.gd) return b.gd - a.gd;
+      return b.rank - a.rank;
+    });
+
+    rows.forEach((r,i)=> r.position=i+1);
+    return rows;
+  }
+
   async function load(){
-    const [s,t] = await Promise.all([
-      fetch(STANDINGS_URL, {cache:'no-store'}).then(r=>r.json()),
-      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json())
+    const [teamsData, tickets] = await Promise.all([
+      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json()),
+      fetch(TICKETS_URL, {cache:'no-store'}).then(r=>r.json())
     ]);
 
-    const generated = s.generated_at || t.generated_at;
-    document.getElementById('updated').textContent = generated ? `Last updated: ${generated}` : 'Last updated: unknown';
+    document.getElementById('updated').textContent =
+      teamsData.generated_at ? `Last updated: ${teamsData.generated_at}` : 'Last updated: unknown';
 
-    allStandings = (s.standings || []);
-    renderStandings(allStandings);
-
-    const teams = (t.teams || []).slice().sort((a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team));
+    const teams = (teamsData.teams || []).slice()
+      .sort((a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team));
     renderTeams(teams);
+
+    allStandings = buildStandings(tickets, teamsData);
+    renderStandings(allStandings);
   }
 
   document.getElementById('search').addEventListener('input', (e) => {
     const q = e.target.value.trim().toLowerCase();
     if(!q){ renderStandings(allStandings); return; }
-    const filtered = allStandings.filter(r => {
-      return String(r.ticket).includes(q) ||
-             String(r.owner).toLowerCase().includes(q) ||
-             (r.teams || []).some(t => String(t).toLowerCase().includes(q));
-    });
-    renderStandings(filtered);
+    renderStandings(allStandings.filter(r =>
+      String(r.ticket).includes(q) ||
+      String(r.owner).toLowerCase().includes(q) ||
+      (r.teams || []).some(t => String(t).toLowerCase().includes(q))
+    ));
   });
 
   load();
