@@ -5,203 +5,208 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>St James' PTA World Cup 2026 Goal Sweepstake</title>
- 
-<style>
-  :root{
-    --bg: #0b1220;
-    --panel: rgba(255,255,255,0.06);
-    --panel-strong: rgba(255,255,255,0.09);
-    --border: rgba(255,255,255,0.12);
-    --text: rgba(255,255,255,0.90);
-    --muted: rgba(255,255,255,0.66);
-    --muted2: rgba(255,255,255,0.52);
-    --accent: #7c3aed;      /* purple */
-    --accent2: #22c55e;     /* green */
-    --danger: #ef4444;
-    --shadow: 0 12px 40px rgba(0,0,0,0.35);
-    --shadow2: 0 6px 18px rgba(0,0,0,0.30);
-    --radius: 16px;
-    --radius2: 12px;
-  }
 
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.09);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.66);
+      --muted2: rgba(255,255,255,0.52);
+      --accent: #7c3aed;      /* purple */
+      --accent2: #22c55e;     /* green */
+      --danger: #ef4444;
+      --shadow: 0 12px 40px rgba(0,0,0,0.35);
+      --shadow2: 0 6px 18px rgba(0,0,0,0.30);
+      --radius: 16px;
+      --radius2: 12px;
+    }
 
-  body{
-    margin: 0;
-    padding: 22px;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:
-      radial-gradient(1200px 800px at 10% 0%, rgba(124,58,237,0.26), transparent 55%),
-      radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 60%),
-      radial-gradient(700px 500px at 30% 90%, rgba(56,189,248,0.14), transparent 60%),
-      var(--bg);
-    color: var(--text);
-  }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
-  /* Header */
-  h1{
-    margin: 0 0 8px 0;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    font-size: clamp(24px, 2.4vw, 34px);
-  }
+    body{
+      margin: 0;
+      padding: 22px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(124,58,237,0.26), transparent 55%),
+        radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 60%),
+        radial-gradient(700px 500px at 30% 90%, rgba(56,189,248,0.14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+    }
 
-  .meta{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin: 0 0 16px 0;
-    color: var(--muted);
-  }
-  .small{ font-size: 12px; color: var(--muted2); }
+    /* Header */
+    h1{
+      margin: 0 0 8px 0;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: clamp(24px, 2.4vw, 34px);
+    }
 
-  /* Layout grids */
-  .grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    margin-top: 14px;
-  }
-  @media (min-width: 1100px){
-    .grid{ grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items: start; }
-  }
+    .meta{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 0 0 16px 0;
+      color: var(--muted);
+    }
+    .small{ font-size: 12px; color: var(--muted2); }
 
-  /* Panels */
-  section{
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow2);
-    overflow: hidden;
-  }
-  section > h2{
-    margin: 0;
-    padding: 14px 16px;
-    font-size: 16px;
-    font-weight: 750;
-    letter-spacing: -0.01em;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
-  }
+    /* Layout grid */
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 14px;
+    }
+    @media (min-width: 1100px){
+      .grid{ grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items: start; }
+    }
 
-  /* Recent box inside right column (if you keep it as a panel) */
-  .recent-wrap{
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    padding: 14px 16px;
-  }
-  .recent-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:12px;
-    margin-bottom: 10px;
-  }
-  .recent-title h2{
-    margin:0;
-    font-size: 14px;
-    font-weight: 750;
-    color: var(--text);
-  }
-  .recent{
-    max-height: 150px;
-    overflow: auto;
-    padding-right: 6px;
-  }
-  .recent ul{ margin: 0; padding-left: 18px; }
-  .recent li{
-    margin: 8px 0;
-    color: var(--muted);
-    line-height: 1.35;
-  }
+    /* Panels */
+    section{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      overflow: hidden;
+    }
+    section > h2{
+      margin: 0;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+    }
 
-  /* Search */
-  .search{
-    width: calc(100% - 32px);
-    margin: 12px 16px 14px 16px;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.28);
-    color: var(--text);
-    outline: none;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-  }
-  .search::placeholder{ color: rgba(255,255,255,0.45); }
-  .search:focus{
-    border-color: rgba(124,58,237,0.65);
-    box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
-  }
+    /* Recent box (right column, above team table) */
+    .recent-wrap{
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 14px 16px 0 16px;
+    }
+    .recent-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .recent-title h2{
+      margin:0;
+      font-size: 14px;
+      font-weight: 750;
+      color: var(--text);
+    }
+    .recent{
+      max-height: 150px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+    .recent ul{ margin: 0; padding-left: 18px; }
+    .recent li{
+      margin: 8px 0;
+      color: var(--muted);
+      line-height: 1.35;
+    }
 
-  /* Tables */
-  .table-wrap{
-    padding: 0 16px 16px 16px;
-  }
-  table{
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius2);
-    border: 1px solid var(--border);
-    background: rgba(0,0,0,0.18);
-  }
-  thead th{
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    text-align: left;
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.70);
-    background: rgba(0,0,0,0.35);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 10px;
-  }
-  tbody td{
-    padding: 10px 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    font-size: 13.5px;
-    color: rgba(255,255,255,0.88);
-    vertical-align: top;
-  }
-  tbody tr:nth-child(2n) td{
-    background: rgba(255,255,255,0.02);
-  }
-  tbody tr:hover td{
-    background: rgba(124,58,237,0.10);
-  }
+    /* Search */
+    .search{
+      width: calc(100% - 32px);
+      margin: 12px 16px 14px 16px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.28);
+      color: var(--text);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .search::placeholder{ color: rgba(255,255,255,0.45); }
+    .search:focus{
+      border-color: rgba(124,58,237,0.65);
+      box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
+    }
 
-  /* Pills */
-  .pill{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.14);
-    background: rgba(124,58,237,0.12);
-    color: rgba(255,255,255,0.88);
-    font-size: 12px;
-    margin: 2px 6px 2px 0;
-    white-space: nowrap;
-  }
+    /* Table scroll wrapper (keeps scrollbars) */
+    .table-wrap{
+      padding: 0 16px 16px 16px;
+    }
+    .table-scroll{
+      overflow:auto;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+    }
 
-  /* Small helper text */
-  code{
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.10);
-    padding: 1px 6px;
-    border-radius: 999px;
-    color: rgba(255,255,255,0.82);
-    font-size: 12px;
-  }
-</style>
+    table{
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      min-width: 640px; /* allows horizontal scroll on narrow screens */
+    }
 
+    thead th{
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 10px;
+    }
+    tbody td{
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.88);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(2n) td{
+      background: rgba(255,255,255,0.02);
+    }
+    tbody tr:hover td{
+      background: rgba(124,58,237,0.10);
+    }
+
+    /* Pills */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(124,58,237,0.12);
+      color: rgba(255,255,255,0.88);
+      font-size: 12px;
+      margin: 2px 6px 2px 0;
+      white-space: nowrap;
+    }
+
+    /* Small helper text */
+    code{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 1px 6px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.82);
+      font-size: 12px;
+    }
+  </style>
 </head>
+
 <body>
   <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
   <div class="meta">
@@ -214,30 +219,29 @@
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
-      
-<div class="table-wrap" style="overflow:auto; max-height: 75vh;">
-  <!-- table stays as-is -->
-</div>
 
-        <table id="standingsTable">
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Ticket</th>
-              <th>Owner</th>
-              <th>Teams</th>
-              <th>Goals</th>
-              <th>GD</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="table-wrap">
+        <div class="table-scroll" style="max-height: 75vh;">
+          <table id="standingsTable">
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Ticket</th>
+                <th>Owner</th>
+                <th>Teams</th>
+                <th>Goals</th>
+                <th>GD</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
     <!-- RIGHT: Recent finished matches (top) + Goals by team (below) -->
     <section>
-      <div class="recent-wrap" style="margin-bottom:14px;">
+      <div class="recent-wrap">
         <div class="recent-title">
           <h2 style="margin:0;">Recently applied finished matches</h2>
           <div class="small">Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)</div>
@@ -246,25 +250,25 @@
       </div>
 
       <h2>Goals by Team</h2>
-     
-<div class="table-wrap" style="overflow:auto; max-height: 75vh;">
-  <!-- table stays as-is -->
-</div>
 
-        <table id="teamsTable">
-          <thead>
-            <tr>
-              <th>Team</th>
-              <th>GF</th>
-              <th>GA</th>
-              <th>GD</th>
-              <th>P</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="table-wrap">
+        <div class="table-scroll" style="max-height: 75vh;">
+          <table id="teamsTable">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>P</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-      <div class="small" style="margin-top:10px;">
+
+      <div class="small" style="margin:0 16px 16px 16px;">
         Tip: if a team name doesn't match the data provider naming, update <code>data/team_name_map.json</code>.
       </div>
     </section>
@@ -289,9 +293,11 @@
   function renderStandings(rows){
     const tbody = document.querySelector('#standingsTable tbody');
     tbody.innerHTML = '';
+
     for(const r of rows){
       const teams = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
       const tr = document.createElement('tr');
+
       tr.innerHTML = `
         <td>${r.position}</td>
         <td>${r.ticket}</td>
@@ -300,11 +306,11 @@
         <td>${r.goals}</td>
         <td>${r.gd}</td>
       `;
-    
-// Highlight Top 3 rows
-if (r.position === 1) tr.style.boxShadow = "inset 4px 0 0 rgba(255, 215, 0, 0.95)";      // gold
-if (r.position === 2) tr.style.boxShadow = "inset 4px 0 0 rgba(192, 192, 192, 0.95)";    // silver
-if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.95)";     // bronze
+
+      // Highlight Top 3 rows
+      if (r.position === 1) tr.style.boxShadow = "inset 4px 0 0 rgba(255, 215, 0, 0.95)";      // gold
+      if (r.position === 2) tr.style.boxShadow = "inset 4px 0 0 rgba(192, 192, 192, 0.95)";    // silver
+      if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.95)";     // bronze
 
       tbody.appendChild(tr);
     }
@@ -313,6 +319,7 @@ if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.9
   function renderTeams(rows){
     const tbody = document.querySelector('#teamsTable tbody');
     tbody.innerHTML = '';
+
     for(const r of rows){
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -352,13 +359,14 @@ if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.9
     const rows = (tickets || []).map(tk => {
       const goals = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
       const gd = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
+
       return {
         ticket: tk.ticket,
         owner: tk.owner,
         teams: tk.teams,
         goals,
         gd,
-        rank: (tk.rank ?? tk.ticket) // used for tie-breaker #3, not displayed
+        rank: (tk.rank ?? tk.ticket) // tie-breaker #3, not displayed
       };
     });
 
@@ -409,4 +417,3 @@ if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.9
 </script>
 </body>
 </html>
-``
