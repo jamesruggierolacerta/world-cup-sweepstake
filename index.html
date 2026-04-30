@@ -68,7 +68,7 @@
       white-space: nowrap;
     }
 
-    /* === Header row aligned to the same 60/40 grid === */
+    /* === Header aligned to main 60/40 grid === */
     .header-grid{
       display: grid;
       grid-template-columns: 1fr;
@@ -102,7 +102,7 @@
       .badge-right{ width: 78px; height: 78px; }
     }
 
-    /* === Main grid 60/40 === */
+    /* === Main 60/40 grid === */
     .grid{
       display: grid;
       grid-template-columns: 1fr;
@@ -146,46 +146,31 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
-    .search:focus{
-      border-color: rgba(245,158,11,0.78);
-      box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
-    }
 
-    /* Right stack: recent + team goals */
+    /* Right stack */
     .right-stack{
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
-    /* Scroll containers */
+    /* Scroll containers (vertical only) */
     .table-wrap{ padding: 0 16px 16px 16px; }
-
-    /* Default: vertical scrolling only (desktop) */
     .table-scroll{
       overflow-y: auto;
-      overflow-x: hidden;
+      overflow-x: hidden; /* no horizontal scrolling */
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
-    }
-
-    /* On narrow screens: allow horizontal scroll for wide tables */
-    @media (max-width: 900px){
-      .table-scroll{
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
     }
 
     table{
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      table-layout: fixed; /* prevents width blowouts */
+      table-layout: fixed;
     }
 
-    /* Desktop: keep rows single line */
     th, td{
       padding: 10px;
       overflow: hidden;
@@ -195,7 +180,6 @@
       font-size: 13.5px;
     }
 
-    /* Sticky header: solid so no bleed-through */
     thead th{
       position: sticky;
       top: 0;
@@ -204,7 +188,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
-      background: rgba(11,18,32,0.98);
+      background: rgba(11,18,32,0.98); /* solid header */
       border-bottom: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(6px);
     }
@@ -212,13 +196,7 @@
     tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
     tbody tr:hover td{ background: rgba(220,38,38,0.10); }
 
-    /* Teams cell: single line + tooltip */
-    #standingsTable td.teams{
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
+    /* Pills */
     .pill{
       display: inline-flex;
       align-items: center;
@@ -263,42 +241,33 @@
     .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
     .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
 
-    
-/* On narrow screens, allow horizontal scroll ONLY if the table needs it */
-@media (max-width: 900px){
-  .table-scroll{
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+    /* === Column hiding rules (NO horizontal scroll) ===
+       Priority order ALWAYS visible: Pos, Owner, Goals, GD
+       Hide only: Ticket first, then Teams
+    */
+    #standingsTable.hide-ticket [data-col="ticket"]{ display:none; }
+    #standingsTable.hide-teams  [data-col="teams"]{ display:none; }
 
-  /* Let the table expand to its natural content width, but never smaller than the container */
-  #standingsTable,
-  #teamsTable{
-    width: max-content;   /* natural width based on columns */
-    min-width: 100%;      /* but never narrower than the panel */
-  }
-}
-
-
-    /* === Sticky-left POS column on narrow screens === */
-    @media (max-width: 900px){
-      #standingsTable th.sticky-pos,
-      #standingsTable td.sticky-pos{
-        position: sticky;
-        left: 0;
-        z-index: 20;
-      }
-      #standingsTable thead th.sticky-pos{
-        z-index: 30;
-        background: rgba(11,18,32,0.98);
-      }
-      #standingsTable tbody td.sticky-pos{
-        background: rgba(11,18,32,0.92);
-      }
-      #standingsTable th.sticky-pos,
-      #standingsTable td.sticky-pos{
-        box-shadow: 1px 0 0 rgba(255,255,255,0.10);
-      }
+    /* Tooltip bubble */
+    .row-tooltip{
+      position: fixed;
+      z-index: 9999;
+      max-width: min(420px, calc(100vw - 24px));
+      background: rgba(11,18,32,0.98);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+      color: rgba(255,255,255,0.92);
+      font-size: 13px;
+      line-height: 1.35;
+      display: none;
+    }
+    .row-tooltip .k{ color: rgba(255,255,255,0.62); }
+    .row-tooltip .row{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 10px;
     }
   </style>
 </head>
@@ -314,9 +283,8 @@
       </div>
     </div>
 
-    <!-- Badge image only (no link) -->
     <div class="header-badge">
-      <img class="badge-right" src="./st.-james.png" alt="St James badge">
+      st.-james.png
     </div>
   </div>
 
@@ -327,16 +295,16 @@
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
 
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height:75vh;">
+        <div class="table-scroll" id="standingsWrap" style="max-height:75vh;">
           <table id="standingsTable">
             <thead>
               <tr>
-                <th class="col-pos sticky-pos">Pos</th>
-                <th class="col-ticket">Ticket</th>
-                <th class="col-owner">Owner</th>
-                <th>Teams</th>
-                <th class="col-goals">Goals</th>
-                <th class="col-gd">GD</th>
+                <th class="col-pos" data-col="pos">Pos</th>
+                <th class="col-ticket" data-col="ticket">Ticket</th>
+                <th class="col-owner" data-col="owner">Owner</th>
+                <th data-col="teams">Teams</th>
+                <th class="col-goals" data-col="goals">Goals</th>
+                <th class="col-gd" data-col="gd">GD</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -391,28 +359,140 @@
 
   let allStandings = [];
 
+  // Tooltip state
+  let tooltipEl = null;
+  let tooltipPinned = false;
+
+  function ensureTooltip(){
+    if(tooltipEl) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.className = 'row-tooltip';
+    document.body.appendChild(tooltipEl);
+
+    // Tap elsewhere closes if pinned
+    document.addEventListener('pointerdown', (e) => {
+      if(!tooltipPinned) return;
+      if(tooltipEl && !tooltipEl.contains(e.target)){
+        tooltipPinned = false;
+        hideTooltip();
+      }
+    });
+
+    // Scrolling closes (mobile-friendly)
+    window.addEventListener('scroll', () => {
+      if(tooltipPinned){
+        tooltipPinned = false;
+        hideTooltip();
+      }
+    }, { passive:true });
+
+    window.addEventListener('touchmove', () => {
+      if(tooltipPinned){
+        tooltipPinned = false;
+        hideTooltip();
+      }
+    }, { passive:true });
+
+    return tooltipEl;
+  }
+
+  function hideTooltip(){
+    if(!tooltipEl) return;
+    tooltipEl.style.display = 'none';
+  }
+
+  function showRowTooltip(tr, pinned){
+    const tip = ensureTooltip();
+    const table = document.querySelector('#standingsTable');
+
+    const hideTicket = table.classList.contains('hide-ticket');
+    const hideTeams  = table.classList.contains('hide-teams');
+
+    const rows = [];
+    // Only show hidden fields
+    if(hideTicket) rows.push(['Ticket', tr.dataset.ticket]);
+    if(hideTeams)  rows.push(['Teams', tr.dataset.teams]);
+
+    // If nothing hidden (wide screen), show a compact summary anyway
+    if(rows.length === 0){
+      rows.push(['Ticket', tr.dataset.ticket]);
+      rows.push(['Teams', tr.dataset.teams]);
+    }
+
+    tip.innerHTML = `<div class="row">${
+      rows.map(([k,v]) => `<div class="k">${esc(k)}</div><div>${esc(v)}</div>`).join('')
+    }</div>`;
+
+    const rect = tr.getBoundingClientRect();
+    const x = Math.min(rect.left + 12, window.innerWidth - 24);
+    const y = Math.min(rect.bottom + 10, window.innerHeight - 24);
+
+    tip.style.left = `${x}px`;
+    tip.style.top  = `${y}px`;
+    tip.style.display = 'block';
+
+    tooltipPinned = pinned;
+  }
+
+  function adjustStandingsColumns(){
+    const wrap  = document.querySelector('#standingsWrap');
+    const table = document.querySelector('#standingsTable');
+    if(!wrap || !table) return;
+
+    // Reset
+    table.classList.remove('hide-ticket','hide-teams');
+
+    // If overflow, hide lowest priority first: Ticket, then Teams
+    if (wrap.scrollWidth > wrap.clientWidth){
+      table.classList.add('hide-ticket');
+    }
+    if (wrap.scrollWidth > wrap.clientWidth){
+      table.classList.add('hide-teams');
+    }
+  }
+
   function renderStandings(rows){
     const tbody = document.querySelector('#standingsTable tbody');
     tbody.innerHTML = '';
+
     for(const r of rows){
       const tr = document.createElement('tr');
+
       if(r.position===1) tr.classList.add('leader-1');
       if(r.position===2) tr.classList.add('leader-2');
       if(r.position===3) tr.classList.add('leader-3');
 
-      const teamsTitle = esc((r.teams||[]).join(' / '));
-      const pills = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+      const teamsTitle = (r.teams || []).join(' / ');
+      const pills = (r.teams || []).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+
+      tr.dataset.ticket = r.ticket;
+      tr.dataset.teams = teamsTitle;
 
       tr.innerHTML = `
-        <td class="sticky-pos">${r.position}</td>
-        <td>${r.ticket}</td>
-        <td>${esc(r.owner)}</td>
-        <td class="teams" title="${teamsTitle}">${pills}</td>
-        <td>${r.goals}</td>
-        <td>${r.gd}</td>
+        <td data-col="pos">${r.position}</td>
+        <td data-col="ticket">${r.ticket}</td>
+        <td data-col="owner">${esc(r.owner)}</td>
+        <td data-col="teams" title="${esc(teamsTitle)}">${pills}</td>
+        <td data-col="goals">${r.goals}</td>
+        <td data-col="gd">${r.gd}</td>
       `;
+
+      // Desktop hover
+      tr.addEventListener('mouseenter', () => showRowTooltip(tr, false));
+      tr.addEventListener('mouseleave', () => { if(!tooltipPinned) hideTooltip(); });
+
+      // Mobile tap
+      tr.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        tooltipPinned = true;
+        showRowTooltip(tr, true);
+      });
+
       tbody.appendChild(tr);
     }
+
+    // Apply column-fit after render
+    adjustStandingsColumns();
   }
 
   function renderTeams(rows){
@@ -492,6 +572,11 @@
       (r.teams || []).some(t => String(t).toLowerCase().includes(q))
     );
     renderStandings(filtered);
+  });
+
+  window.addEventListener('resize', () => {
+    adjustStandingsColumns();
+    hideTooltip();
   });
 
   load();
