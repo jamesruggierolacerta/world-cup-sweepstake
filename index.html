@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>St James' PTA World Cup 2026 Goals Sweepstake</title>
+  <title>St James' PTA World Cup 2026 Goal Sweepstake</title>
 
   <style>
     :root{
@@ -82,13 +82,13 @@
       }
     }
 
-    /* Badge sits "high", centred in the right header cell */
     .header-badge{
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 2px; /* keeps it level with the left text */
+      padding-top: 2px;
     }
+
     .badge-right{
       width: 92px;
       height: 92px;
@@ -151,7 +151,7 @@
       box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
     }
 
-    /* Right stack: recent + team goals (no gaps) */
+    /* Right stack: recent + team goals */
     .right-stack{
       display: flex;
       flex-direction: column;
@@ -160,12 +160,22 @@
 
     /* Scroll containers */
     .table-wrap{ padding: 0 16px 16px 16px; }
+
+    /* Default: vertical scrolling only (desktop) */
     .table-scroll{
       overflow-y: auto;
       overflow-x: hidden;
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
+    }
+
+    /* On narrow screens: allow horizontal scroll for wide tables */
+    @media (max-width: 900px){
+      .table-scroll{
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
     }
 
     table{
@@ -175,15 +185,17 @@
       table-layout: fixed; /* prevents width blowouts */
     }
 
+    /* Desktop: keep rows single line */
     th, td{
       padding: 10px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;  /* keep ticket rows on one line */
+      white-space: nowrap;
       vertical-align: top;
       font-size: 13.5px;
     }
 
+    /* Sticky header: solid so no bleed-through */
     thead th{
       position: sticky;
       top: 0;
@@ -192,7 +204,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
-      background: rgba(11,18,32,0.98); /* solid: no bleed-through */
+      background: rgba(11,18,32,0.98);
       border-bottom: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(6px);
     }
@@ -241,7 +253,7 @@
     .recent ul{ margin: 0; padding-left: 18px; }
     .recent li{
       margin: 8px 0;
-      white-space: normal; /* allow wrapping for match text */
+      white-space: normal;
       color: var(--muted);
       line-height: 1.35;
     }
@@ -250,14 +262,40 @@
     .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }
     .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
     .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
+
+    /* === MOBILE/NARROW VIEW TABLE WIDTHS === */
+    @media (max-width: 900px){
+      #standingsTable{ min-width: 860px; }  /* enables horizontal swipe */
+      #teamsTable{ min-width: 520px; }
+    }
+
+    /* === Sticky-left POS column on narrow screens === */
+    @media (max-width: 900px){
+      #standingsTable th.sticky-pos,
+      #standingsTable td.sticky-pos{
+        position: sticky;
+        left: 0;
+        z-index: 20;
+      }
+      #standingsTable thead th.sticky-pos{
+        z-index: 30;
+        background: rgba(11,18,32,0.98);
+      }
+      #standingsTable tbody td.sticky-pos{
+        background: rgba(11,18,32,0.92);
+      }
+      #standingsTable th.sticky-pos,
+      #standingsTable td.sticky-pos{
+        box-shadow: 1px 0 0 rgba(255,255,255,0.10);
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Header aligned with the same 60/40 grid -->
   <div class="header-grid">
     <div>
-      <h1>St James' PTA World Cup 2026 Goals Sweepstake</h1>
+      <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
       <div class="meta">
         Winner decided by Highest Team Total Goals → Team Total Goal Diff → Weakest combo pre‑tournament.<br>
         Goals count in Normal Time + Extra Time only. Penalty shootout goals are excluded.
@@ -265,8 +303,9 @@
       </div>
     </div>
 
+    <!-- Badge image only (no link) -->
     <div class="header-badge">
-      <img class="badge-right" src="./st.-james.png" alt="St James RC Primary School badge">
+      <img class="badge-right" src="./st.-james.png" alt="St James badge">
     </div>
   </div>
 
@@ -277,11 +316,11 @@
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
 
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height:75vh">
+        <div class="table-scroll" style="max-height:75vh;">
           <table id="standingsTable">
             <thead>
               <tr>
-                <th class="col-pos">Pos</th>
+                <th class="col-pos sticky-pos">Pos</th>
                 <th class="col-ticket">Ticket</th>
                 <th class="col-owner">Owner</th>
                 <th>Teams</th>
@@ -307,7 +346,7 @@
       <section>
         <h2>Goals by Team</h2>
         <div class="table-wrap">
-          <div class="table-scroll" style="max-height:60vh">
+          <div class="table-scroll" style="max-height:60vh;">
             <table id="teamsTable">
               <thead>
                 <tr>
@@ -354,7 +393,7 @@
       const pills = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
 
       tr.innerHTML = `
-        <td>${r.position}</td>
+        <td class="sticky-pos">${r.position}</td>
         <td>${r.ticket}</td>
         <td>${esc(r.owner)}</td>
         <td class="teams" title="${teamsTitle}">${pills}</td>
