@@ -77,9 +77,7 @@
       margin-bottom: 10px;
     }
     @media (min-width:1100px){
-      .header-grid{
-        grid-template-columns: 1.7fr 1fr; /* match main grid */
-      }
+      .header-grid{ grid-template-columns: 1.7fr 1fr; } /* match main grid */
     }
 
     .header-badge{
@@ -111,7 +109,7 @@
       margin-top: 8px;
     }
     @media (min-width:1100px){
-      .grid{ grid-template-columns: 1.7fr 1fr; }
+      .grid{ grid-template-columns: 1.7fr 1fr; } /* ~60/40 */
     }
 
     section{
@@ -146,8 +144,12 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
+    .search:focus{
+      border-color: rgba(245,158,11,0.78);
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
+    }
 
-    /* Right stack */
+    /* Right stack: recent + goals */
     .right-stack{
       display: flex;
       flex-direction: column;
@@ -158,7 +160,7 @@
     .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
       overflow-y: auto;
-      overflow-x: hidden; /* no horizontal scrolling */
+      overflow-x: hidden; /* no horizontal scroll */
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
@@ -188,7 +190,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
-      background: rgba(11,18,32,0.98); /* solid header */
+      background: rgba(11,18,32,0.98); /* solid */
       border-bottom: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(6px);
     }
@@ -213,7 +215,7 @@
     /* Column widths */
     .col-pos{ width: 56px; }
     .col-ticket{ width: 76px; }
-    .col-owner{ width: 170px; }
+    .col-owner{ width: 180px; } /* owner is high priority */
     .col-goals{ width: 72px; }
     .col-gd{ width: 64px; }
     .col-mini{ width: 64px; }
@@ -241,9 +243,9 @@
     .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
     .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
 
-    /* === Column hiding rules (NO horizontal scroll) ===
-       Priority order ALWAYS visible: Pos, Owner, Goals, GD
-       Hide only: Ticket first, then Teams
+    /* === Column hiding rules (no horizontal scroll) ===
+       Priority visible: Pos, Owner, Goals, GD (ALWAYS)
+       Hide only: Ticket first, then Teams (per your priority list)
     */
     #standingsTable.hide-ticket [data-col="ticket"]{ display:none; }
     #standingsTable.hide-teams  [data-col="teams"]{ display:none; }
@@ -284,7 +286,7 @@
     </div>
 
     <div class="header-badge">
-      st.-james.png
+      <img class="badge-right" src="./st.-james.png" alt="St James' RC Primary School badge" />
     </div>
   </div>
 
@@ -369,13 +371,15 @@
     tooltipEl.className = 'row-tooltip';
     document.body.appendChild(tooltipEl);
 
+    // Prevent taps on tooltip from closing it
+    tooltipEl.addEventListener('pointerdown', (e) => e.stopPropagation());
+
     // Tap elsewhere closes if pinned
     document.addEventListener('pointerdown', (e) => {
       if(!tooltipPinned) return;
-      if(tooltipEl && !tooltipEl.contains(e.target)){
-        tooltipPinned = false;
-        hideTooltip();
-      }
+      if(tooltipEl && tooltipEl.contains(e.target)) return;
+      tooltipPinned = false;
+      hideTooltip();
     });
 
     // Scrolling closes (mobile-friendly)
@@ -409,14 +413,13 @@
     const hideTeams  = table.classList.contains('hide-teams');
 
     const rows = [];
-    // Only show hidden fields
-    if(hideTicket) rows.push(['Ticket', tr.dataset.ticket]);
     if(hideTeams)  rows.push(['Teams', tr.dataset.teams]);
+    if(hideTicket) rows.push(['Ticket', tr.dataset.ticket]);
 
-    // If nothing hidden (wide screen), show a compact summary anyway
+    // If nothing hidden, show both anyway (useful on desktop hover)
     if(rows.length === 0){
-      rows.push(['Ticket', tr.dataset.ticket]);
       rows.push(['Teams', tr.dataset.teams]);
+      rows.push(['Ticket', tr.dataset.ticket]);
     }
 
     tip.innerHTML = `<div class="row">${
@@ -434,21 +437,23 @@
     tooltipPinned = pinned;
   }
 
+  // Decide which columns to hide based on available width
+  // Always visible: Pos, Owner, Goals, GD
+  // Hide order: Ticket first, then Teams
   function adjustStandingsColumns(){
     const wrap  = document.querySelector('#standingsWrap');
     const table = document.querySelector('#standingsTable');
     if(!wrap || !table) return;
 
-    // Reset
-    table.classList.remove('hide-ticket','hide-teams');
+    // Reset (and clear legacy)
+    table.classList.remove('hide-ticket','hide-teams','hide-gd');
 
-    // If overflow, hide lowest priority first: Ticket, then Teams
-    if (wrap.scrollWidth > wrap.clientWidth){
-      table.classList.add('hide-ticket');
-    }
-    if (wrap.scrollWidth > wrap.clientWidth){
-      table.classList.add('hide-teams');
-    }
+    const w = wrap.clientWidth;
+
+    // These thresholds are tuned so Owner/Goals/GD remain readable
+    // If it feels too aggressive/weak, tweak numbers slightly.
+    if(w < 520) table.classList.add('hide-ticket');  // hide lowest priority first
+    if(w < 430) table.classList.add('hide-teams');   // then hide teams
   }
 
   function renderStandings(rows){
@@ -481,9 +486,10 @@
       tr.addEventListener('mouseenter', () => showRowTooltip(tr, false));
       tr.addEventListener('mouseleave', () => { if(!tooltipPinned) hideTooltip(); });
 
-      // Mobile tap
+      // Mobile tap (keep tooltip open until scroll/tap elsewhere)
       tr.addEventListener('pointerdown', (e) => {
         e.preventDefault();
+        e.stopPropagation();     // prevents immediate close
         tooltipPinned = true;
         showRowTooltip(tr, true);
       });
@@ -491,7 +497,6 @@
       tbody.appendChild(tr);
     }
 
-    // Apply column-fit after render
     adjustStandingsColumns();
   }
 
