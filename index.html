@@ -9,7 +9,6 @@
     :root{
       --bg: #0b1220;
 
-      /* Red → Yellow palette */
       --red:     #dc2626;
       --redDeep: #991b1b;
       --amber:   #f59e0b;
@@ -26,219 +25,208 @@
       --radius2: 12px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
 
     body{
-      margin: 0;
-      padding: 22px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      padding:22px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.36), transparent 55%),
-        radial-gradient(950px 720px at 90% 10%, rgba(245,158,11,0.22), transparent 60%),
-        radial-gradient(820px 520px at 55% 92%, rgba(251,191,36,0.16), transparent 62%),
-        radial-gradient(900px 700px at 6% 86%, rgba(153,27,27,0.22), transparent 60%),
+        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.38), transparent 55%),
+        radial-gradient(950px 720px at 90% 10%, rgba(245,158,11,0.24), transparent 60%),
+        radial-gradient(820px 520px at 55% 92%, rgba(251,191,36,0.18), transparent 62%),
+        radial-gradient(900px 700px at 6% 86%, rgba(153,27,27,0.24), transparent 60%),
         var(--bg);
       color: var(--text);
     }
 
-    /* Header */
-    .site-header{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 8px;
-    }
-    .header-left{ min-width: 0; }
-
     h1{
-      margin: 0 0 8px 0;
-      font-weight: 850;
-      letter-spacing: -0.02em;
-      font-size: clamp(24px, 2.4vw, 34px);
+      margin:0 0 8px 0;
+      font-size:clamp(24px,2.4vw,34px);
+      font-weight:850;
+      letter-spacing:-0.02em;
     }
 
     .meta{
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      color: var(--muted);
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      margin-bottom:14px;
     }
 
-    .small{ font-size: 12px; color: var(--muted2); }
-
-    /* School badge (image only, no link) */
-    .school-badge{
-      width: 78px;
-      height: 78px;
-      object-fit: contain;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.28);
-      flex: 0 0 auto;
-    }
-    @media (min-width: 1100px){
-      .school-badge{ width: 90px; height: 90px; }
+    .site-header{
+      margin-bottom:6px;
     }
 
-    /* Main grid 60/40 */
+    /* Main grid 60 / 40 */
     .grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: start;
-      margin-top: 10px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
     }
-    @media (min-width: 1100px){
-      .grid{ grid-template-columns: 1.7fr 1fr; }
+    @media (min-width:1100px){
+      .grid{ grid-template-columns:1.7fr 1fr; }
     }
 
     section{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
+
     section > h2{
-      margin: 0;
-      padding: 14px 16px;
-      font-size: 16px;
-      font-weight: 780;
-      letter-spacing: -0.01em;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+      margin:0;
+      padding:14px 16px;
+      font-size:16px;
+      font-weight:780;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+    }
+
+    /* Ticket section badge */
+    .ticket-section{
+      padding-top:56px;
+      position:relative;
+    }
+
+    .ticket-badge{
+      position:absolute;
+      top:-46px;
+      left:50%;
+      transform:translateX(-50%);
+      width:92px;
+      height:92px;
+      object-fit:contain;
+      border-radius:16px;
+      background:rgba(0,0,0,0.22);
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:0 12px 28px rgba(0,0,0,0.35);
+      z-index:5;
     }
 
     /* Search */
     .search{
-      width: calc(100% - 32px);
-      margin: 12px 16px 14px 16px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.28);
-      color: var(--text);
-      outline: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      width:calc(100% - 32px);
+      margin:12px 16px 14px 16px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,0.28);
+      color:var(--text);
     }
-    .search::placeholder{ color: rgba(255,255,255,0.45); }
 
     /* Right stack */
     .right-stack{
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
     }
 
     /* Scroll containers */
-    .table-wrap{ padding: 0 16px 16px 16px; }
+    .table-wrap{ padding:0 16px 16px 16px }
     .table-scroll{
-      overflow-y: auto;
-      overflow-x: hidden;
-      border-radius: var(--radius2);
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.18);
+      overflow-y:auto;
+      overflow-x:hidden;
+      border-radius:var(--radius2);
+      border:1px solid var(--border);
+      background:rgba(0,0,0,0.18);
     }
 
     table{
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      table-layout: fixed;
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      table-layout:fixed;
     }
 
     th, td{
-      padding: 10px 10px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      vertical-align: top;
+      padding:10px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      font-size:13.5px;
     }
 
     thead th{
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.78);
-      background: rgba(11,18,32,0.98);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position:sticky;
+      top:0;
+      z-index:10;
+      font-size:12px;
+      text-transform:uppercase;
+      background:rgba(11,18,32,0.98);
+      color:rgba(255,255,255,0.78);
+      border-bottom:1px solid rgba(255,255,255,0.12);
     }
 
-    tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
-    tbody tr:hover td{ background: rgba(220,38,38,0.10); }
+    tbody tr:nth-child(2n) td{ background:rgba(255,255,255,0.02) }
+    tbody tr:hover td{ background:rgba(220,38,38,0.10) }
 
-    /* Teams / pills */
-    td.teams{ white-space: nowrap; }
+    /* Teams cell */
+    #standingsTable td.teams{ white-space:nowrap }
+
     .pill{
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(245,158,11,0.22);
-      background: rgba(245,158,11,0.14);
-      font-size: 11px;
-      margin-right: 6px;
+      display:inline-flex;
+      padding:3px 8px;
+      margin-right:6px;
+      font-size:11px;
+      border-radius:999px;
+      border:1px solid rgba(245,158,11,0.24);
+      background:rgba(245,158,11,0.14);
     }
 
     /* Column widths */
-    .col-pos{ width: 56px; }
-    .col-ticket{ width: 76px; }
-    .col-owner{ width: 170px; }
-    .col-goals{ width: 72px; }
-    .col-gd{ width: 64px; }
-    .col-mini{ width: 64px; }
+    .col-pos{ width:56px }
+    .col-ticket{ width:76px }
+    .col-owner{ width:170px }
+    .col-goals{ width:72px }
+    .col-gd{ width:64px }
+    .col-mini{ width:64px }
 
     /* Recent */
-    .recent-body{ padding: 12px 16px 16px 16px; }
+    .recent-body{ padding:12px 16px 16px 16px }
     .recent{
-      max-height: 150px;
-      overflow: auto;
-      padding: 10px 12px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.18);
+      max-height:150px;
+      overflow:auto;
+      padding:10px 12px;
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:var(--radius2);
     }
-    .recent ul{ margin:0; padding-left:18px; }
-    .recent li{ margin:8px 0; white-space: normal; color: var(--muted); }
+    .recent li{ margin:8px 0; white-space:normal; color:var(--muted) }
 
-    /* Leader highlights */
-    .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }
-    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
-    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
+    /* Leaders */
+    .leader-1{ box-shadow:inset 4px 0 0 rgba(245,158,11,0.95) }
+    .leader-2{ box-shadow:inset 4px 0 0 rgba(255,255,255,0.55) }
+    .leader-3{ box-shadow:inset 4px 0 0 rgba(220,38,38,0.92) }
   </style>
 </head>
 
 <body>
   <div class="site-header">
-    <div class="header-left">
-      <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
-      <div class="meta">
-        <div>
-          Winner decided by Highest Team Total Goals → Team Total Goal Diff → Weakest combo pre‑tournament.<br>
-          Goals count in Normal Time + Extra Time only. Penalty shootout goals are excluded.
-        </div>
-        <div id="updated" class="small">Loading…</div>
-      </div>
+    <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
+    <div class="meta">
+      Winner decided by Highest Team Total Goals → Team Total Goal Diff → Weakest combo pre‑tournament.<br>
+      Goals count in Normal Time + Extra Time only. Penalty shootout goals are excluded.
+      <div id="updated" class="small">Loading…</div>
     </div>
-
-    <!-- Badge image only -->
-    <img src="./st.-james.png" alt="St James' RC Primary School" class="school-badge">
   </div>
 
   <div class="grid">
-    <!-- LEFT: Ticket League Table -->
-    <section>
+
+    <!-- LEFT -->
+    <section class="ticket-section">
+      <img src="st.-james.png" alt="St James RC Primary School" class="ticket-badge">
+
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
 
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 75vh;">
+        <div class="table-scroll" style="max-height:75vh">
           <table id="standingsTable">
             <thead>
               <tr>
@@ -256,7 +244,7 @@
       </div>
     </section>
 
-    <!-- RIGHT: Recent + Goals by Team -->
+    <!-- RIGHT -->
     <div class="right-stack">
       <section>
         <h2>Recently applied finished matches</h2>
@@ -268,7 +256,7 @@
       <section>
         <h2>Goals by Team</h2>
         <div class="table-wrap">
-          <div class="table-scroll" style="max-height: 60vh;">
+          <div class="table-scroll" style="max-height:60vh">
             <table id="teamsTable">
               <thead>
                 <tr>
@@ -285,90 +273,88 @@
         </div>
       </section>
     </div>
+
   </div>
 
-  <script>
-    const CACHE_BUST = `?t=${Date.now()}`;
-    const TEAMS_URL   = `./standings/teams.json${CACHE_BUST}`;
-    const RECENT_URL  = `./standings/recent_finished.json${CACHE_BUST}`;
-    const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
+<script>
+  const CACHE_BUST=`?t=${Date.now()}`;
+  const TEAMS_URL=`./standings/teams.json${CACHE_BUST}`;
+  const RECENT_URL=`./standings/recent_finished.json${CACHE_BUST}`;
+  const TICKETS_URL=`./data/tickets.json${CACHE_BUST}`;
 
-    function esc(s){
-      return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  function esc(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+
+  function renderStandings(rows){
+    const tbody=document.querySelector('#standingsTable tbody');
+    tbody.innerHTML='';
+    for(const r of rows){
+      const tr=document.createElement('tr');
+      if(r.position===1)tr.classList.add('leader-1');
+      if(r.position===2)tr.classList.add('leader-2');
+      if(r.position===3)tr.classList.add('leader-3');
+      tr.innerHTML=`
+        <td>${r.position}</td>
+        <td>${r.ticket}</td>
+        <td>${esc(r.owner)}</td>
+        <td class="teams" title="${esc(r.teams.join(' / '))}">
+          ${r.teams.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}
+        </td>
+        <td>${r.goals}</td>
+        <td>${r.gd}</td>
+      `;
+      tbody.appendChild(tr);
     }
+  }
 
-    function renderStandings(rows){
-      const tbody = document.querySelector('#standingsTable tbody');
-      tbody.innerHTML = '';
-      for(const r of rows){
-        const tr = document.createElement('tr');
-        if (r.position === 1) tr.classList.add('leader-1');
-        if (r.position === 2) tr.classList.add('leader-2');
-        if (r.position === 3) tr.classList.add('leader-3');
-        tr.innerHTML = `
-          <td>${r.position}</td>
-          <td>${r.ticket}</td>
-          <td>${esc(r.owner)}</td>
-          <td class="teams" title="${esc(r.teams.join(' / '))}">${r.teams.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</td>
-          <td>${r.goals}</td>
-          <td>${r.gd}</td>
-        `;
-        tbody.appendChild(tr);
-      }
+  function renderTeams(rows){
+    const tbody=document.querySelector('#teamsTable tbody');
+    tbody.innerHTML='';
+    for(const r of rows){
+      tbody.innerHTML+=`<tr>
+        <td>${esc(r.team)}</td>
+        <td>${r.gf}</td>
+        <td>${r.ga}</td>
+        <td>${r.gd}</td>
+        <td>${r.played}</td>
+      </tr>`;
     }
+  }
 
-    function renderTeams(rows){
-      const tbody = document.querySelector('#teamsTable tbody');
-      tbody.innerHTML = '';
-      for(const r of rows){
-        tbody.innerHTML += `<tr>
-          <td>${esc(r.team)}</td>
-          <td>${r.gf}</td><td>${r.ga}</td><td>${r.gd}</td><td>${r.played}</td>
-        </tr>`;
-      }
+  function renderRecent(matches){
+    const el=document.getElementById('recent');
+    if(!matches||!matches.length){
+      el.innerHTML='<div class="small">No finished matches applied yet.</div>';
+      return;
     }
+    el.innerHTML='<ul>'+matches.map(m=>`<li>${esc(m.home)} vs ${esc(m.away)} — FT ${m.ft.home}-${m.ft.away}${m.et?`, ET ${m.et.home}-${m.et.away}`:''}</li>`).join('')+'</ul>';
+  }
 
-    function renderRecent(matches){
-      const el = document.getElementById('recent');
-      if(!matches || !matches.length){
-        el.innerHTML = '<div class="small">No finished matches applied yet.</div>';
-        return;
-      }
-      el.innerHTML = '<ul>' + matches.map(m =>
-        `<li>${esc(m.home)} vs ${esc(m.away)} — FT ${m.ft.home}-${m.ft.away}${m.et ? `, ET ${m.et.home}-${m.et.away}` : ''}</li>`
-      ).join('') + '</ul>';
-    }
+  async function load(){
+    const [teams,recent,tickets]=await Promise.all([
+      fetch(TEAMS_URL).then(r=>r.json()),
+      fetch(RECENT_URL).then(r=>r.json()).catch(()=>({matches:[]})),
+      fetch(TICKETS_URL).then(r=>r.json())
+    ]);
+    document.getElementById('updated').textContent=
+      teams.generated_at?`Last updated: ${teams.generated_at}`:'Last updated: unknown';
+    renderTeams(teams.teams);
+    renderRecent(recent.matches);
+    const teamMap=new Map(teams.teams.map(t=>[t.team,t]));
+    const rows=tickets.map(t=>({
+      ticket:t.ticket,
+      owner:t.owner,
+      teams:t.teams,
+      goals:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gf||0),0),
+      gd:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gd||0),0),
+      rank:t.rank
+    }));
+    rows.sort((a,b)=>b.goals-a.goals||b.gd-a.gd||b.rank-a.rank);
+    rows.forEach((r,i)=>r.position=i+1);
+    renderStandings(rows);
+  }
 
-    function buildStandings(tickets, teamsData){
-      const teamMap = new Map(teamsData.teams.map(t=>[t.team,t]));
-      const rows = tickets.map(t=>({
-        ticket:t.ticket,
-        owner:t.owner,
-        teams:t.teams,
-        goals:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gf||0),0),
-        gd:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gd||0),0),
-        rank:t.rank
-      }));
-      rows.sort((a,b)=>b.goals-a.goals||b.gd-a.gd||b.rank-a.rank);
-      rows.forEach((r,i)=>r.position=i+1);
-      return rows;
-    }
-
-    async function load(){
-      const [teams,recent,tickets] = await Promise.all([
-        fetch(TEAMS_URL).then(r=>r.json()),
-        fetch(RECENT_URL).then(r=>r.json()).catch(()=>({matches:[]})),
-        fetch(TICKETS_URL).then(r=>r.json())
-      ]);
-      document.getElementById('updated').textContent =
-        teams.generated_at ? `Last updated: ${teams.generated_at}` : 'Last updated: unknown';
-      renderTeams(teams.teams);
-      renderRecent(recent.matches);
-      renderStandings(buildStandings(tickets, teams));
-    }
-
-    load();
-    setInterval(load, 120000);
-  </script>
+  load();
+  setInterval(load,120000);
+</script>
 </body>
 </html>
