@@ -9,17 +9,20 @@
   <style>
     :root{
       --bg: #0b1220;
+
+      /* Red / Yellow palette */
+      --accent: #ef4444;   /* red */
+      --accent2:#fbbf24;   /* yellow/gold */
+      --accent3:#f59e0b;   /* amber */
+
       --panel: rgba(255,255,255,0.06);
       --panel-strong: rgba(255,255,255,0.09);
       --border: rgba(255,255,255,0.12);
-      --text: rgba(255,255,255,0.90);
-      --muted: rgba(255,255,255,0.66);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
       --muted2: rgba(255,255,255,0.52);
-      --accent: #7c3aed;      /* purple */
-      --accent2: #22c55e;     /* green */
-      --danger: #ef4444;
-      --shadow: 0 12px 40px rgba(0,0,0,0.35);
-      --shadow2: 0 6px 18px rgba(0,0,0,0.30);
+
+      --shadow2: 0 8px 22px rgba(0,0,0,0.32);
       --radius: 16px;
       --radius2: 12px;
     }
@@ -32,17 +35,16 @@
       padding: 22px;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 800px at 10% 0%, rgba(124,58,237,0.26), transparent 55%),
-        radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,0.18), transparent 60%),
-        radial-gradient(700px 500px at 30% 90%, rgba(56,189,248,0.14), transparent 60%),
+        radial-gradient(1200px 800px at 12% 0%, rgba(239,68,68,0.24), transparent 55%),
+        radial-gradient(900px 700px at 90% 10%, rgba(251,191,36,0.20), transparent 60%),
+        radial-gradient(700px 500px at 35% 90%, rgba(245,158,11,0.12), transparent 60%),
         var(--bg);
       color: var(--text);
     }
 
-    /* Header */
     h1{
       margin: 0 0 8px 0;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: -0.02em;
       font-size: clamp(24px, 2.4vw, 34px);
     }
@@ -55,16 +57,37 @@
       color: var(--muted);
     }
     .small{ font-size: 12px; color: var(--muted2); }
+    code{
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 1px 6px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.86);
+      font-size: 12px;
+      white-space: nowrap;
+    }
 
-    /* Layout grid */
-    .grid{
+    /* === Layout === */
+    .top-grid{
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
-      margin-top: 14px;
+      margin-top: 12px;
+      margin-bottom: 18px;
+      align-items: start;
     }
+
+    .main-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    /* 50/50 split on desktop */
     @media (min-width: 1100px){
-      .grid{ grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items: start; }
+      .top-grid{ grid-template-columns: 1fr 1fr; }
+      .main-grid{ grid-template-columns: 1fr 1fr; }
     }
 
     /* Panels */
@@ -75,46 +98,15 @@
       box-shadow: var(--shadow2);
       overflow: hidden;
     }
+
     section > h2{
       margin: 0;
       padding: 14px 16px;
       font-size: 16px;
-      font-weight: 750;
+      font-weight: 780;
       letter-spacing: -0.01em;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
-    }
-
-    /* Recent box (right column, above team table) */
-    .recent-wrap{
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      padding: 14px 16px 0 16px;
-    }
-    .recent-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      gap:12px;
-      margin-bottom: 10px;
-    }
-    .recent-title h2{
-      margin:0;
-      font-size: 14px;
-      font-weight: 750;
-      color: var(--text);
-    }
-    .recent{
-      max-height: 150px;
-      overflow: auto;
-      padding-right: 6px;
-    }
-    .recent ul{ margin: 0; padding-left: 18px; }
-    .recent li{
-      margin: 8px 0;
-      color: var(--muted);
-      line-height: 1.35;
     }
 
     /* Search */
@@ -131,79 +123,96 @@
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
     .search:focus{
-      border-color: rgba(124,58,237,0.65);
-      box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
+      border-color: rgba(251,191,36,0.70);
+      box-shadow: 0 0 0 4px rgba(251,191,36,0.18);
     }
 
-    /* Table scroll wrapper (keeps scrollbars) */
-    .table-wrap{
-      padding: 0 16px 16px 16px;
-    }
+    /* Scroll containers – vertical scroll only */
+    .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
-      overflow:auto;
+      overflow-y: auto;
+      overflow-x: hidden;  /* prevents horizontal scrolling */
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
     }
 
+    /* Tables */
     table{
+      width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      width: 100%;
-      min-width: 640px; /* allows horizontal scroll on narrow screens */
+      table-layout: fixed;            /* prevents column expansion (kills horiz scroll) */
+    }
+
+    th, td{
+      padding: 10px 10px;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      vertical-align: top;
     }
 
     thead th{
       position: sticky;
       top: 0;
-      z-index: 2;
+      z-index: 10;                    /* keeps header above body */
       text-align: left;
       font-size: 12px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.70);
-      background: rgba(0,0,0,0.35);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 10px;
-    }
-    tbody td{
-      padding: 10px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      font-size: 13.5px;
-      color: rgba(255,255,255,0.88);
-      vertical-align: top;
-    }
-    tbody tr:nth-child(2n) td{
-      background: rgba(255,255,255,0.02);
-    }
-    tbody tr:hover td{
-      background: rgba(124,58,237,0.10);
+      color: rgba(255,255,255,0.76);
+      background: rgba(11,18,32,0.98); /* solid header so text never shows through */
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(6px);
     }
 
+    tbody td{
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.90);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
+
+    tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
+    tbody tr:hover td{ background: rgba(239,68,68,0.10); }
+
     /* Pills */
+    .teams{ white-space: normal; }
     .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
+      display: inline-flex;
+      align-items: center;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(124,58,237,0.12);
-      color: rgba(255,255,255,0.88);
+      border: 1px solid rgba(251,191,36,0.22);
+      background: rgba(251,191,36,0.14);
+      color: rgba(255,255,255,0.90);
       font-size: 12px;
       margin: 2px 6px 2px 0;
       white-space: nowrap;
     }
 
-    /* Small helper text */
-    code{
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 1px 6px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.82);
-      font-size: 12px;
+    /* Recent box */
+    .recent-body{
+      padding: 12px 16px 16px 16px;
     }
+    .recent{
+      max-height: 150px;
+      overflow: auto;
+      padding-right: 6px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      padding: 10px 12px;
+    }
+    .recent ul{ margin: 0; padding-left: 18px; }
+    .recent li{ margin: 8px 0; color: var(--muted); line-height: 1.35; }
+
+    /* Leader highlight strip (top 3) */
+    .leader-1{ box-shadow: inset 4px 0 0 rgba(251,191,36,0.95); }  /* gold */
+    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.60); } /* silver-ish */
+    .leader-3{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }  /* bronze/amber */
   </style>
 </head>
 
@@ -214,23 +223,38 @@
     <div id="updated" class="small">Loading…</div>
   </div>
 
-  <div class="grid" style="margin-top:18px;">
-    <!-- LEFT: Ticket league table -->
+  <!-- TOP ROW: keep recent matches top-right and separate -->
+  <div class="top-grid">
+    <div></div> <!-- intentionally blank to push recent box to top-right -->
+    <section>
+      <h2>Recently applied finished matches</h2>
+      <div class="recent-body">
+        <div class="small" style="margin-bottom:10px;">
+          Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
+        </div>
+        <div class="recent" id="recent"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MAIN ROW: 50/50 columns, titles aligned -->
+  <div class="main-grid">
+    <!-- LEFT: Ticket table -->
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
 
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 75vh;">
+        <div class="table-scroll" style="max-height: 70vh;">
           <table id="standingsTable">
             <thead>
               <tr>
-                <th>Pos</th>
-                <th>Ticket</th>
-                <th>Owner</th>
+                <th style="width:64px;">Pos</th>
+                <th style="width:88px;">Ticket</th>
+                <th style="width:180px;">Owner</th>
                 <th>Teams</th>
-                <th>Goals</th>
-                <th>GD</th>
+                <th style="width:80px;">Goals</th>
+                <th style="width:70px;">GD</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -239,28 +263,20 @@
       </div>
     </section>
 
-    <!-- RIGHT: Recent finished matches (top) + Goals by team (below) -->
+    <!-- RIGHT: Team table -->
     <section>
-      <div class="recent-wrap">
-        <div class="recent-title">
-          <h2 style="margin:0;">Recently applied finished matches</h2>
-          <div class="small">Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)</div>
-        </div>
-        <div class="recent" id="recent"></div>
-      </div>
-
       <h2>Goals by Team</h2>
 
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 75vh;">
+        <div class="table-scroll" style="max-height: 70vh;">
           <table id="teamsTable">
             <thead>
               <tr>
                 <th>Team</th>
-                <th>GF</th>
-                <th>GA</th>
-                <th>GD</th>
-                <th>P</th>
+                <th style="width:70px;">GF</th>
+                <th style="width:70px;">GA</th>
+                <th style="width:70px;">GD</th>
+                <th style="width:70px;">P</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -277,9 +293,9 @@
 <script>
   // Cache-bust so you never need ?v=1 again
   const CACHE_BUST = `?t=${Date.now()}`;
-  const TEAMS_URL = `./standings/teams.json${CACHE_BUST}`;
+  const TEAMS_URL  = `./standings/teams.json${CACHE_BUST}`;
   const RECENT_URL = `./standings/recent_finished.json${CACHE_BUST}`;
-  const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
+  const TICKETS_URL= `./data/tickets.json${CACHE_BUST}`;
 
   function esc(s){
     return String(s).replace(/[&<>"]/g, m => ({
@@ -298,6 +314,11 @@
       const teams = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
       const tr = document.createElement('tr');
 
+      // Top 3 highlight classes
+      if (r.position === 1) tr.classList.add('leader-1');
+      if (r.position === 2) tr.classList.add('leader-2');
+      if (r.position === 3) tr.classList.add('leader-3');
+
       tr.innerHTML = `
         <td>${r.position}</td>
         <td>${r.ticket}</td>
@@ -306,12 +327,6 @@
         <td>${r.goals}</td>
         <td>${r.gd}</td>
       `;
-
-      // Highlight Top 3 rows
-      if (r.position === 1) tr.style.boxShadow = "inset 4px 0 0 rgba(255, 215, 0, 0.95)";      // gold
-      if (r.position === 2) tr.style.boxShadow = "inset 4px 0 0 rgba(192, 192, 192, 0.95)";    // silver
-      if (r.position === 3) tr.style.boxShadow = "inset 4px 0 0 rgba(205, 127, 50, 0.95)";     // bronze
-
       tbody.appendChild(tr);
     }
   }
@@ -319,7 +334,6 @@
   function renderTeams(rows){
     const tbody = document.querySelector('#teamsTable tbody');
     tbody.innerHTML = '';
-
     for(const r of rows){
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -350,16 +364,13 @@
     el.innerHTML = '<ul>' + matches.map(m => `<li>${fmtMatch(m)}</li>`).join('') + '</ul>';
   }
 
-  let allStandings = [];
-
   function buildStandings(tickets, teamsData){
     const teamMap = new Map();
     for(const t of (teamsData.teams || [])) teamMap.set(t.team, t);
 
     const rows = (tickets || []).map(tk => {
       const goals = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
-      const gd = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
-
+      const gd    = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
       return {
         ticket: tk.ticket,
         owner: tk.owner,
@@ -370,7 +381,6 @@
       };
     });
 
-    // Sort: goals desc, gd desc, weakest combo wins (higher rank)
     rows.sort((a,b)=>{
       if(b.goals !== a.goals) return b.goals - a.goals;
       if(b.gd !== a.gd) return b.gd - a.gd;
@@ -381,11 +391,23 @@
     return rows;
   }
 
+  async function fetchJSON(url, fallback){
+    try{
+      const res = await fetch(url, {cache:'no-store'});
+      if(!res.ok) return fallback;
+      return await res.json();
+    }catch(e){
+      return fallback;
+    }
+  }
+
+  let allStandings = [];
+
   async function load(){
     const [teamsData, recentData, tickets] = await Promise.all([
-      fetch(TEAMS_URL, {cache:'no-store'}).then(r=>r.json()),
-      fetch(RECENT_URL, {cache:'no-store'}).then(r=>r.json()),
-      fetch(TICKETS_URL, {cache:'no-store'}).then(r=>r.json())
+      fetchJSON(TEAMS_URL,  {generated_at:null, teams: []}),
+      fetchJSON(RECENT_URL, {matches: []}),
+      fetchJSON(TICKETS_URL, [])
     ]);
 
     document.getElementById('updated').textContent =
