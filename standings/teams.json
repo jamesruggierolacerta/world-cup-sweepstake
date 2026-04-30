@@ -10,10 +10,10 @@
     },
     {
       "team": "Belgium",
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "played": 0
+      "gf": 4,
+      "ga": 2,
+      "gd": 2,
+      "played": 1
     },
     {
       "team": "Brazil",
@@ -80,10 +80,10 @@
     },
     {
       "team": "Morocco",
-      "gf": 0,
+      "gf": 3,
       "ga": 0,
-      "gd": 0,
-      "played": 0
+      "gd": 3,
+      "played": 1
     },
     {
       "team": "Netherlands",
@@ -109,9 +109,9 @@
     {
       "team": "Senegal",
       "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "played": 0
+      "ga": 4,
+      "gd": -4,
+      "played": 1
     },
     {
       "team": "Spain",
