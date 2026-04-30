@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-30T16:14:09.119773Z",
+  "generated_at": "2026-04-30T17:16:22.141236Z",
   "teams": [
     {
       "team": "Argentina",
@@ -10,10 +10,10 @@
     },
     {
       "team": "Belgium",
-      "gf": 5,
-      "ga": 2,
-      "gd": 3,
-      "played": 2
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "Brazil",
@@ -80,10 +80,10 @@
     },
     {
       "team": "Morocco",
-      "gf": 5,
-      "ga": 2,
-      "gd": 3,
-      "played": 1
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "Netherlands",
@@ -109,9 +109,9 @@
     {
       "team": "Senegal",
       "gf": 0,
-      "ga": 4,
-      "gd": -4,
-      "played": 1
+      "ga": 0,
+      "gd": 0,
+      "played": 0
     },
     {
       "team": "Spain",
