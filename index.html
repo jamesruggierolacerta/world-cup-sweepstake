@@ -263,11 +263,22 @@
     .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
     .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
 
-    /* === MOBILE/NARROW VIEW TABLE WIDTHS === */
-    @media (max-width: 900px){
-      #standingsTable{ min-width: 860px; }  /* enables horizontal swipe */
-      #teamsTable{ min-width: 520px; }
-    }
+    
+/* On narrow screens, allow horizontal scroll ONLY if the table needs it */
+@media (max-width: 900px){
+  .table-scroll{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Let the table expand to its natural content width, but never smaller than the container */
+  #standingsTable,
+  #teamsTable{
+    width: max-content;   /* natural width based on columns */
+    min-width: 100%;      /* but never narrower than the panel */
+  }
+}
+
 
     /* === Sticky-left POS column on narrow screens === */
     @media (max-width: 900px){
