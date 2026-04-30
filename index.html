@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,20 +9,19 @@
     :root{
       --bg: #0b1220;
 
-      /* Red / Yellow palette (redder) */
-      --accent:  #dc2626;   /* red */
-      --accentD: #991b1b;   /* deeper red */
-      --accent2: #f59e0b;   /* amber */
-      --accent2L:#fbbf24;   /* yellow */
+      /* Red → Yellow palette (a bit redder) */
+      --red:     #dc2626;
+      --redDeep: #991b1b;
+      --amber:   #f59e0b;
+      --yellow:  #fbbf24;
 
       --panel: rgba(255,255,255,0.06);
-      --panel-strong: rgba(255,255,255,0.09);
       --border: rgba(255,255,255,0.12);
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.68);
       --muted2: rgba(255,255,255,0.52);
 
-      --shadow2: 0 8px 22px rgba(0,0,0,0.32);
+      --shadow: 0 8px 22px rgba(0,0,0,0.32);
       --radius: 16px;
       --radius2: 12px;
     }
@@ -36,12 +34,22 @@
       padding: 22px;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.30), transparent 55%),
-        radial-gradient(900px 700px at 88% 12%, rgba(245,158,11,0.18), transparent 60%),
-        radial-gradient(700px 500px at 35% 92%, rgba(153,27,27,0.16), transparent 60%),
+        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.36), transparent 55%),
+        radial-gradient(950px 720px at 90% 10%, rgba(245,158,11,0.22), transparent 60%),
+        radial-gradient(820px 520px at 55% 92%, rgba(251,191,36,0.16), transparent 62%),
+        radial-gradient(900px 700px at 6% 86%, rgba(153,27,27,0.22), transparent 60%),
         var(--bg);
       color: var(--text);
     }
+
+    /* Header with badge top-right */
+    .site-header{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-left{ min-width: 0; }
 
     h1{
       margin: 0 0 8px 0;
@@ -68,19 +76,36 @@
       white-space: nowrap;
     }
 
-    /* === Layout === */
-    .top-row, .main-row{
+    .badge-link{
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      text-decoration: none;
+    }
+    .school-badge{
+      width: 78px;
+      height: 78px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+    }
+    @media (min-width: 1100px){
+      .school-badge{ width: 90px; height: 90px; }
+    }
+
+    /* Main grid: 60/40 */
+    .grid{
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
       align-items: start;
+      margin-top: 8px;
     }
-
-    /* 60/40 on desktop */
     @media (min-width: 1100px){
-      .top-row, .main-row{
-        grid-template-columns: 1.5fr 1fr; /* ~60/40 */
-      }
+      .grid{ grid-template-columns: 1.7fr 1fr; } /* ~63/37 (feels like 60/40) */
     }
 
     /* Panels */
@@ -88,10 +113,9 @@
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: var(--shadow2);
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
-
     section > h2{
       margin: 0;
       padding: 14px 16px;
@@ -116,43 +140,43 @@
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
     .search:focus{
-      border-color: rgba(245,158,11,0.75);
+      border-color: rgba(245,158,11,0.78);
       box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
     }
 
-    /* Right column stack (recent + teams) */
+    /* Right stack: recent + teams (no gap / no overlap) */
     .right-stack{
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
-    /* Scroll containers – vertical scroll only */
+    /* Scroll containers – vertical only */
     .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
       overflow-y: auto;
-      overflow-x: hidden; /* prevents horizontal scroll */
+      overflow-x: hidden;
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
     }
 
-    /* Tables */
+    /* Tables: fixed layout prevents width blowouts */
     table{
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      table-layout: fixed;   /* critical: prevents column expansion */
+      table-layout: fixed;
     }
 
     th, td{
       padding: 10px 10px;
-      word-break: break-word;
-      overflow-wrap: anywhere;
       vertical-align: top;
-      overflow: hidden;      /* prevents bleed into other columns */
+      overflow: hidden;     /* prevents bleed into other columns */
+      text-overflow: ellipsis;
     }
 
+    /* Sticky header: solid so numbers never show behind */
     thead th{
       position: sticky;
       top: 0;
@@ -162,7 +186,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
-      background: rgba(11,18,32,0.98); /* solid header so body never shows behind */
+      background: rgba(11,18,32,0.98);
       border-bottom: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(6px);
     }
@@ -174,36 +198,34 @@
       background: transparent;
       position: relative;
       z-index: 1;
+      white-space: nowrap; /* keep ticket rows to one line */
     }
-
     tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
     tbody tr:hover td{ background: rgba(220,38,38,0.10); }
 
-    /* Teams cell: wrap pills nicely, never cross columns */
-    td.teams{
-      white-space: normal;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: flex-start;
+    /* Teams cell on ticket table: keep single line + ellipsis */
+    #standingsTable td.teams{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Pills */
+    /* Pills (compact so they fit better on one line) */
     .pill{
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 999px;
       border: 1px solid rgba(245,158,11,0.22);
       background: rgba(245,158,11,0.14);
       color: rgba(255,255,255,0.92);
-      font-size: 12px;
+      font-size: 11px;
       white-space: nowrap;
-      margin: 0;            /* we rely on gap */
+      margin-right: 6px;
       max-width: 100%;
     }
 
-    /* Recent panel body + scrolling list */
+    /* Recent panel */
     .recent-body{ padding: 12px 16px 16px 16px; }
     .recent{
       max-height: 150px;
@@ -215,39 +237,60 @@
       padding: 10px 12px;
     }
     .recent ul{ margin: 0; padding-left: 18px; }
-    .recent li{ margin: 8px 0; color: var(--muted); line-height: 1.35; }
+    .recent li{ margin: 8px 0; color: var(--muted); line-height: 1.35; white-space: normal; }
 
-    /* Leader highlight strip (top 3) */
+    /* Column widths */
+    .col-pos{ width: 56px; }
+    .col-ticket{ width: 76px; }
+    .col-owner{ width: 170px; }
+    .col-goals{ width: 72px; }
+    .col-gd{ width: 64px; }
+    .col-mini{ width: 64px; }
+
+    /* Leader highlights */
     .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); } /* gold */
     .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); } /* silver-ish */
-    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.90); } /* bronze-ish (red) */
+    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }  /* bronze-ish (red) */
   </style>
 </head>
 
 <body>
-  <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
-  <div class="meta">
-    <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
-    <div id="updated" class="small">Loading…</div>
+  <div class="site-header">
+    <div class="header-left">
+      <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
+      <div class="meta">
+        <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
+        <div id="updated" class="small">Loading…</div>
+      </div>
+    </div>
+
+    <!-- Badge in top-right (local file you added to repo root) -->
+    <a class="badge-link"
+       href="https://ozschoolwear.co.uk/st-james-rc-primary-school/"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="St James' RC Primary School">
+      <img class="school-badge" src="./st.-james.png" alt="St James' RC Primary School badge">
+    </a>
   </div>
 
-  <!-- TOP ROW: ticket table is top-left; recent matches is top-right (aligned) -->
-  <div class="top-row" style="margin-top:18px;">
-    <!-- LEFT: Ticket table (top-left) -->
+  <div class="grid">
+    <!-- LEFT: Ticket League Table (top-left aligned with recent) -->
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
+
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 50vh;">
+        <div class="table-scroll" style="max-height: 75vh;">
           <table id="standingsTable">
             <thead>
               <tr>
-                <th style="width:64px;">Pos</th>
-                <th style="width:88px;">Ticket</th>
-                <th style="width:180px;">Owner</th>
+                <th class="col-pos">Pos</th>
+                <th class="col-ticket">Ticket</th>
+                <th class="col-owner">Owner</th>
                 <th>Teams</th>
-                <th style="width:80px;">Goals</th>
-                <th style="width:70px;">GD</th>
+                <th class="col-goals">Goals</th>
+                <th class="col-gd">GD</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -256,23 +299,18 @@
       </div>
     </section>
 
-    <!-- RIGHT: Recent matches (separate panel, top-right) -->
-    <section>
-      <h2>Recently applied finished matches</h2>
-      <div class="recent-body">
-        <div class="small" style="margin-bottom:10px;">
-          Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
-        </div>
-        <div class="recent" id="recent"></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- MAIN ROW: bottom-left empty spacer; bottom-right contains team table (keeps right side aligned & separate) -->
-  <div class="main-row" style="margin-top:18px;">
-    <div></div>
-
+    <!-- RIGHT: Recent + Goals by Team stacked (no gap / no overlap) -->
     <div class="right-stack">
+      <section>
+        <h2>Recently applied finished matches</h2>
+        <div class="recent-body">
+          <div class="small" style="margin-bottom:10px;">
+            Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
+          </div>
+          <div class="recent" id="recent"></div>
+        </div>
+      </section>
+
       <section>
         <h2>Goals by Team</h2>
         <div class="table-wrap">
@@ -281,10 +319,10 @@
               <thead>
                 <tr>
                   <th>Team</th>
-                  <th style="width:70px;">GF</th>
-                  <th style="width:70px;">GA</th>
-                  <th style="width:70px;">GD</th>
-                  <th style="width:70px;">P</th>
+                  <th class="col-mini">GF</th>
+                  <th class="col-mini">GA</th>
+                  <th class="col-mini">GD</th>
+                  <th class="col-mini">P</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -320,18 +358,20 @@
     tbody.innerHTML = '';
 
     for(const r of rows){
-      const teams = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+      const teamsPills = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
       const tr = document.createElement('tr');
 
       if (r.position === 1) tr.classList.add('leader-1');
       if (r.position === 2) tr.classList.add('leader-2');
       if (r.position === 3) tr.classList.add('leader-3');
 
+      const teamsTitle = esc((r.teams || []).join(' / '));
+
       tr.innerHTML = `
         <td>${r.position}</td>
         <td>${r.ticket}</td>
         <td>${esc(r.owner)}</td>
-        <td class="teams">${teams}</td>
+        <td class="teams" title="${teamsTitle}">${teamsPills}</td>
         <td>${r.goals}</td>
         <td>${r.gd}</td>
       `;
@@ -345,7 +385,7 @@
     for(const r of rows){
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${esc(r.team)}</td>
+        <td title="${esc(r.team)}">${esc(r.team)}</td>
         <td>${r.gf}</td>
         <td>${r.ga}</td>
         <td>${r.gd}</td>
@@ -385,7 +425,7 @@
         teams: tk.teams,
         goals,
         gd,
-        rank: (tk.rank ?? tk.ticket) // tie-breaker #3, not displayed
+        rank: (tk.rank ?? tk.ticket)
       };
     });
 
