@@ -10,10 +10,11 @@
     :root{
       --bg: #0b1220;
 
-      /* Red / Yellow palette */
-      --accent: #ef4444;   /* red */
-      --accent2:#fbbf24;   /* yellow/gold */
-      --accent3:#f59e0b;   /* amber */
+      /* Red / Yellow palette (redder) */
+      --accent:  #dc2626;   /* red */
+      --accentD: #991b1b;   /* deeper red */
+      --accent2: #f59e0b;   /* amber */
+      --accent2L:#fbbf24;   /* yellow */
 
       --panel: rgba(255,255,255,0.06);
       --panel-strong: rgba(255,255,255,0.09);
@@ -35,9 +36,9 @@
       padding: 22px;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 800px at 12% 0%, rgba(239,68,68,0.24), transparent 55%),
-        radial-gradient(900px 700px at 90% 10%, rgba(251,191,36,0.20), transparent 60%),
-        radial-gradient(700px 500px at 35% 90%, rgba(245,158,11,0.12), transparent 60%),
+        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.30), transparent 55%),
+        radial-gradient(900px 700px at 88% 12%, rgba(245,158,11,0.18), transparent 60%),
+        radial-gradient(700px 500px at 35% 92%, rgba(153,27,27,0.16), transparent 60%),
         var(--bg);
       color: var(--text);
     }
@@ -68,26 +69,18 @@
     }
 
     /* === Layout === */
-    .top-grid{
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      margin-top: 12px;
-      margin-bottom: 18px;
-      align-items: start;
-    }
-
-    .main-grid{
+    .top-row, .main-row{
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
       align-items: start;
     }
 
-    /* 50/50 split on desktop */
+    /* 60/40 on desktop */
     @media (min-width: 1100px){
-      .top-grid{ grid-template-columns: 1fr 1fr; }
-      .main-grid{ grid-template-columns: 1fr 1fr; }
+      .top-row, .main-row{
+        grid-template-columns: 1.5fr 1fr; /* ~60/40 */
+      }
     }
 
     /* Panels */
@@ -123,15 +116,22 @@
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
     .search:focus{
-      border-color: rgba(251,191,36,0.70);
-      box-shadow: 0 0 0 4px rgba(251,191,36,0.18);
+      border-color: rgba(245,158,11,0.75);
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
+    }
+
+    /* Right column stack (recent + teams) */
+    .right-stack{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     /* Scroll containers – vertical scroll only */
     .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
       overflow-y: auto;
-      overflow-x: hidden;  /* prevents horizontal scrolling */
+      overflow-x: hidden; /* prevents horizontal scroll */
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
@@ -142,7 +142,7 @@
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      table-layout: fixed;            /* prevents column expansion (kills horiz scroll) */
+      table-layout: fixed;   /* critical: prevents column expansion */
     }
 
     th, td{
@@ -150,18 +150,19 @@
       word-break: break-word;
       overflow-wrap: anywhere;
       vertical-align: top;
+      overflow: hidden;      /* prevents bleed into other columns */
     }
 
     thead th{
       position: sticky;
       top: 0;
-      z-index: 10;                    /* keeps header above body */
+      z-index: 10;
       text-align: left;
       font-size: 12px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.76);
-      background: rgba(11,18,32,0.98); /* solid header so text never shows through */
+      color: rgba(255,255,255,0.78);
+      background: rgba(11,18,32,0.98); /* solid header so body never shows behind */
       border-bottom: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(6px);
     }
@@ -176,27 +177,34 @@
     }
 
     tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
-    tbody tr:hover td{ background: rgba(239,68,68,0.10); }
+    tbody tr:hover td{ background: rgba(220,38,38,0.10); }
+
+    /* Teams cell: wrap pills nicely, never cross columns */
+    td.teams{
+      white-space: normal;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: flex-start;
+    }
 
     /* Pills */
-    .teams{ white-space: normal; }
     .pill{
       display: inline-flex;
       align-items: center;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(251,191,36,0.22);
-      background: rgba(251,191,36,0.14);
-      color: rgba(255,255,255,0.90);
+      border: 1px solid rgba(245,158,11,0.22);
+      background: rgba(245,158,11,0.14);
+      color: rgba(255,255,255,0.92);
       font-size: 12px;
-      margin: 2px 6px 2px 0;
       white-space: nowrap;
+      margin: 0;            /* we rely on gap */
+      max-width: 100%;
     }
 
-    /* Recent box */
-    .recent-body{
-      padding: 12px 16px 16px 16px;
-    }
+    /* Recent panel body + scrolling list */
+    .recent-body{ padding: 12px 16px 16px 16px; }
     .recent{
       max-height: 150px;
       overflow: auto;
@@ -210,9 +218,9 @@
     .recent li{ margin: 8px 0; color: var(--muted); line-height: 1.35; }
 
     /* Leader highlight strip (top 3) */
-    .leader-1{ box-shadow: inset 4px 0 0 rgba(251,191,36,0.95); }  /* gold */
-    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.60); } /* silver-ish */
-    .leader-3{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }  /* bronze/amber */
+    .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); } /* gold */
+    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); } /* silver-ish */
+    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.90); } /* bronze-ish (red) */
   </style>
 </head>
 
@@ -223,29 +231,14 @@
     <div id="updated" class="small">Loading…</div>
   </div>
 
-  <!-- TOP ROW: keep recent matches top-right and separate -->
-  <div class="top-grid">
-    <div></div> <!-- intentionally blank to push recent box to top-right -->
-    <section>
-      <h2>Recently applied finished matches</h2>
-      <div class="recent-body">
-        <div class="small" style="margin-bottom:10px;">
-          Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
-        </div>
-        <div class="recent" id="recent"></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- MAIN ROW: 50/50 columns, titles aligned -->
-  <div class="main-grid">
-    <!-- LEFT: Ticket table -->
+  <!-- TOP ROW: ticket table is top-left; recent matches is top-right (aligned) -->
+  <div class="top-row" style="margin-top:18px;">
+    <!-- LEFT: Ticket table (top-left) -->
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
-
       <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 70vh;">
+        <div class="table-scroll" style="max-height: 50vh;">
           <table id="standingsTable">
             <thead>
               <tr>
@@ -263,39 +256,55 @@
       </div>
     </section>
 
-    <!-- RIGHT: Team table -->
+    <!-- RIGHT: Recent matches (separate panel, top-right) -->
     <section>
-      <h2>Goals by Team</h2>
-
-      <div class="table-wrap">
-        <div class="table-scroll" style="max-height: 70vh;">
-          <table id="teamsTable">
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th style="width:70px;">GF</th>
-                <th style="width:70px;">GA</th>
-                <th style="width:70px;">GD</th>
-                <th style="width:70px;">P</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+      <h2>Recently applied finished matches</h2>
+      <div class="recent-body">
+        <div class="small" style="margin-bottom:10px;">
+          Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
         </div>
-      </div>
-
-      <div class="small" style="margin:0 16px 16px 16px;">
-        Tip: if a team name doesn't match the data provider naming, update <code>data/team_name_map.json</code>.
+        <div class="recent" id="recent"></div>
       </div>
     </section>
+  </div>
+
+  <!-- MAIN ROW: bottom-left empty spacer; bottom-right contains team table (keeps right side aligned & separate) -->
+  <div class="main-row" style="margin-top:18px;">
+    <div></div>
+
+    <div class="right-stack">
+      <section>
+        <h2>Goals by Team</h2>
+        <div class="table-wrap">
+          <div class="table-scroll" style="max-height: 60vh;">
+            <table id="teamsTable">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th style="width:70px;">GF</th>
+                  <th style="width:70px;">GA</th>
+                  <th style="width:70px;">GD</th>
+                  <th style="width:70px;">P</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="small" style="margin:0 16px 16px 16px;">
+          Tip: if a team name doesn't match the data provider naming, update <code>data/team_name_map.json</code>.
+        </div>
+      </section>
+    </div>
   </div>
 
 <script>
   // Cache-bust so you never need ?v=1 again
   const CACHE_BUST = `?t=${Date.now()}`;
-  const TEAMS_URL  = `./standings/teams.json${CACHE_BUST}`;
-  const RECENT_URL = `./standings/recent_finished.json${CACHE_BUST}`;
-  const TICKETS_URL= `./data/tickets.json${CACHE_BUST}`;
+  const TEAMS_URL   = `./standings/teams.json${CACHE_BUST}`;
+  const RECENT_URL  = `./standings/recent_finished.json${CACHE_BUST}`;
+  const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
 
   function esc(s){
     return String(s).replace(/[&<>"]/g, m => ({
@@ -314,7 +323,6 @@
       const teams = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
       const tr = document.createElement('tr');
 
-      // Top 3 highlight classes
       if (r.position === 1) tr.classList.add('leader-1');
       if (r.position === 2) tr.classList.add('leader-2');
       if (r.position === 3) tr.classList.add('leader-3');
