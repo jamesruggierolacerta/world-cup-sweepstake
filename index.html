@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>St James' PTA World Cup 2026 Goals Sweepstake</title>
-  <link rel="icon" type="image/png" href="/world-cup-sweepstake/st.-james.png">
+
   <style>
     :root{
       --bg: #0b1220;
@@ -34,10 +34,10 @@
       padding: 22px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.38), transparent 55%),
-        radial-gradient(950px 720px at 90% 10%, rgba(245,158,11,0.24), transparent 60%),
-        radial-gradient(820px 520px at 55% 92%, rgba(251,191,36,0.18), transparent 62%),
-        radial-gradient(900px 700px at 6% 86%, rgba(153,27,27,0.24), transparent 60%),
+        radial-gradient(1200px 800px at 12% 0%, rgba(220,38,38,0.40), transparent 55%),
+        radial-gradient(950px 720px at 90% 10%, rgba(245,158,11,0.26), transparent 60%),
+        radial-gradient(820px 520px at 55% 92%, rgba(251,191,36,0.20), transparent 62%),
+        radial-gradient(900px 700px at 6% 86%, rgba(153,27,27,0.26), transparent 60%),
         var(--bg);
       color: var(--text);
     }
@@ -238,19 +238,21 @@
       line-height: 1.35;
     }
 
-    /* Leaders */
-    .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }
-    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
-    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
-
-    /* === Column hiding rules (no horizontal scroll) ===
+    /* === Ticket table column hiding (NO horizontal scroll) ===
        Always visible: Pos, Owner, Goals, GD
        Hide order (lowest priority first): Ticket, then Teams
     */
     #standingsTable.hide-ticket [data-col="ticket"]{ display:none; }
     #standingsTable.hide-teams  [data-col="teams"]{ display:none; }
 
-    /* === Goals-by-team grouped headers === */
+    /* Top 3 highlight ALWAYS visible (apply to Pos cell) */
+    #standingsTable tr.leader-1 td[data-col="pos"]{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }
+    #standingsTable tr.leader-2 td[data-col="pos"]{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
+    #standingsTable tr.leader-3 td[data-col="pos"]{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
+    #standingsTable td[data-col="pos"]{ background: rgba(11,18,32,0.92); }
+    #standingsTable tr:nth-child(2n) td[data-col="pos"]{ background: rgba(11,18,32,0.96); }
+
+    /* Goals-by-team grouped headers */
     .group-row td{
       background: rgba(11,18,32,0.98) !important;
       color: rgba(255,255,255,0.88);
@@ -260,7 +262,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Tooltip bubble */
+    /* Tooltip bubble (shows hidden fields only) */
     .row-tooltip{
       position: fixed;
       z-index: 9999;
@@ -295,9 +297,9 @@
       </div>
     </div>
 
-    <!-- Badge image only (no link) -->
+    <!-- Badge image only (project-pages safe path) -->
     <div class="header-badge">
-      <img class="badge-right" src="./st.-james.png" alt="St James badge" />
+      <img class="badge-right" src="/world-cup-sweepstake/st.-james.png" alt="St James' RC Primary School badge">
     </div>
   </div>
 
@@ -367,6 +369,31 @@
   const TICKETS_URL  = `./data/tickets.json${CACHE_BUST}`;
   const TEAMMAP_URL  = `./data/team_name_map.json${CACHE_BUST}`;
 
+  // Pre-tournament rank order you provided (1 = best)
+  const PRE_RANK = {
+    "Spain": 1,
+    "France": 2,
+    "England": 3,
+    "Argentina": 4,
+    "Brazil": 5,
+    "Portugal": 6,
+    "Germany": 7,
+    "Netherlands": 8,
+    "Norway": 9,
+    "Belgium": 10,
+    "Colombia": 11,
+    "Japan": 12,
+    "Morocco": 13,
+    "Uruguay": 14,
+    "Mexico": 15,
+    "USA": 16,
+    "Switzerland": 17,
+    "Turkey": 18,
+    "Croatia": 19,
+    "Ecuador": 20,
+    "Senegal": 21
+  };
+
   function esc(s){
     return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
   }
@@ -426,7 +453,7 @@
     if(hideTeams)  rows.push(['Teams', tr.dataset.teams || '']);
     if(hideTicket) rows.push(['Ticket', tr.dataset.ticket || '']);
 
-    // If nothing hidden, do nothing (per your requirement)
+    // If nothing hidden, no tooltip
     if(rows.length === 0){
       hideTooltip();
       return;
@@ -447,9 +474,11 @@
     tooltipPinned = pinned;
   }
 
-  // Decide which columns to hide based on available width
+  // Decide which columns to hide based on available width.
   // Always visible: Pos, Owner, Goals, GD
-  // Hide order: Ticket first, then Teams
+  // Hide order: Ticket (last priority) then Teams (next last) BUT per your priority:
+  // Pos → Owner → Goals → GD → Teams → Ticket
+  // => hide Ticket first, then Teams.
   function adjustStandingsColumns(){
     const wrap  = document.querySelector('#standingsWrap');
     const table = document.querySelector('#standingsTable');
@@ -459,7 +488,8 @@
 
     const w = wrap.clientWidth;
 
-    // Tune these if you want Ticket/Teams to remain visible longer/shorter
+    // Tune these if you want Ticket/Teams to remain visible longer/shorter.
+    // (Ticket hides first; if even tighter, Teams hides too.)
     if(w < 520) table.classList.add('hide-ticket');
     if(w < 430) table.classList.add('hide-teams');
   }
@@ -490,7 +520,7 @@
         <td data-col="gd">${r.gd}</td>
       `;
 
-      // Desktop hover: show tooltip only if columns are hidden
+      // Desktop hover: show tooltip only if something is hidden
       tr.addEventListener('mouseenter', () => showRowTooltip(tr, false));
       tr.addEventListener('mouseleave', () => { if(!tooltipPinned) hideTooltip(); });
 
@@ -519,6 +549,7 @@
     ).join('') + '</ul>';
   }
 
+  // Build pot membership from tickets.json (teams are in pot order [Pot1, Pot2, Pot3])
   function buildPotMapFromTickets(mappedTickets){
     const pot1 = new Set();
     const pot2 = new Set();
@@ -533,15 +564,34 @@
     return { pot1, pot2, pot3 };
   }
 
-  function renderTeamsByPot(teamsRows, potMap){
+  function invertMap(obj){
+    const inv = {};
+    for(const k of Object.keys(obj || {})){
+      inv[obj[k]] = k;
+    }
+    return inv;
+  }
+
+  function preRank(teamName, reverseMap){
+    // Use PRE_RANK directly if possible; else try reverse mapping (providerName -> originalName)
+    const direct = PRE_RANK[teamName];
+    if(typeof direct === 'number') return direct;
+
+    const orig = reverseMap ? reverseMap[teamName] : null;
+    const mapped = orig ? PRE_RANK[orig] : undefined;
+    return (typeof mapped === 'number') ? mapped : 999;
+  }
+
+  function renderTeamsByPot(teamsRows, potMap, reverseNameMap){
     const tbody = document.querySelector('#teamsTable tbody');
     tbody.innerHTML = '';
 
-    // Sort: GF desc, GD desc, Least Played asc
+    // Sort within pot: GF desc, GD desc, least played asc, then pre-rank asc (1 best)
     const sortFn = (a,b) =>
       (b.gf - a.gf) ||
       (b.gd - a.gd) ||
       (a.played - b.played) ||
+      (preRank(a.team, reverseNameMap) - preRank(b.team, reverseNameMap)) ||
       String(a.team).localeCompare(String(b.team));
 
     function addGroup(title, teamNamesSet){
@@ -563,9 +613,10 @@
       }
 
       for(const r of rows){
+        const pr = preRank(r.team, reverseNameMap);
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td title="${esc(r.team)}">${esc(r.team)}</td>
+          <td title="Pre-rank: ${pr}">${esc(r.team)}</td>
           <td>${r.gf}</td>
           <td>${r.ga}</td>
           <td>${r.gd}</td>
@@ -633,8 +684,13 @@
     allStandings = built.standings;
     renderStandings(allStandings);
 
+    // Pot grouping uses mapped team names so it matches teams.json
     const potMap = buildPotMapFromTickets(built.mappedTickets);
-    renderTeamsByPot(teamsData.teams || [], potMap);
+
+    // Reverse mapping lets us apply your PRE_RANK even if provider uses different names
+    const reverseNameMap = invertMap(nameMap);
+
+    renderTeamsByPot(teamsData.teams || [], potMap, reverseNameMap);
   }
 
   // Search (filters ticket table)
