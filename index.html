@@ -9,7 +9,7 @@
     :root{
       --bg: #0b1220;
 
-      /* Red → Yellow palette (a bit redder) */
+      /* Red → Yellow palette */
       --red:     #dc2626;
       --redDeep: #991b1b;
       --amber:   #f59e0b;
@@ -42,12 +42,13 @@
       color: var(--text);
     }
 
-    /* Header with badge top-right */
+    /* Header */
     .site-header{
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
+      align-items: flex-start;
       gap: 16px;
+      margin-bottom: 8px;
     }
     .header-left{ min-width: 0; }
 
@@ -62,27 +63,12 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin: 0 0 16px 0;
       color: var(--muted);
     }
-    .small{ font-size: 12px; color: var(--muted2); }
-    code{
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 1px 6px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.86);
-      font-size: 12px;
-      white-space: nowrap;
-    }
 
-    .badge-link{
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      text-decoration: none;
-    }
+    .small{ font-size: 12px; color: var(--muted2); }
+
+    /* School badge (image only, no link) */
     .school-badge{
       width: 78px;
       height: 78px;
@@ -91,24 +77,24 @@
       background: rgba(0,0,0,0.20);
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+      flex: 0 0 auto;
     }
     @media (min-width: 1100px){
       .school-badge{ width: 90px; height: 90px; }
     }
 
-    /* Main grid: 60/40 */
+    /* Main grid 60/40 */
     .grid{
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
       align-items: start;
-      margin-top: 8px;
+      margin-top: 10px;
     }
     @media (min-width: 1100px){
-      .grid{ grid-template-columns: 1.7fr 1fr; } /* ~63/37 (feels like 60/40) */
+      .grid{ grid-template-columns: 1.7fr 1fr; }
     }
 
-    /* Panels */
     section{
       background: var(--panel);
       border: 1px solid var(--border);
@@ -139,19 +125,15 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
     .search::placeholder{ color: rgba(255,255,255,0.45); }
-    .search:focus{
-      border-color: rgba(245,158,11,0.78);
-      box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
-    }
 
-    /* Right stack: recent + teams (no gap / no overlap) */
+    /* Right stack */
     .right-stack{
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
-    /* Scroll containers – vertical only */
+    /* Scroll containers */
     .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
       overflow-y: auto;
@@ -161,7 +143,6 @@
       background: rgba(0,0,0,0.18);
     }
 
-    /* Tables: fixed layout prevents width blowouts */
     table{
       width: 100%;
       border-collapse: separate;
@@ -171,46 +152,29 @@
 
     th, td{
       padding: 10px 10px;
-      vertical-align: top;
-      overflow: hidden;     /* prevents bleed into other columns */
+      overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: top;
     }
 
-    /* Sticky header: solid so numbers never show behind */
     thead th{
       position: sticky;
       top: 0;
       z-index: 10;
-      text-align: left;
       font-size: 12px;
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
       background: rgba(11,18,32,0.98);
       border-bottom: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(6px);
     }
 
-    tbody td{
-      font-size: 13.5px;
-      color: rgba(255,255,255,0.90);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      background: transparent;
-      position: relative;
-      z-index: 1;
-      white-space: nowrap; /* keep ticket rows to one line */
-    }
     tbody tr:nth-child(2n) td{ background: rgba(255,255,255,0.02); }
     tbody tr:hover td{ background: rgba(220,38,38,0.10); }
 
-    /* Teams cell on ticket table: keep single line + ellipsis */
-    #standingsTable td.teams{
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Pills (compact so they fit better on one line) */
+    /* Teams / pills */
+    td.teams{ white-space: nowrap; }
     .pill{
       display: inline-flex;
       align-items: center;
@@ -218,26 +182,9 @@
       border-radius: 999px;
       border: 1px solid rgba(245,158,11,0.22);
       background: rgba(245,158,11,0.14);
-      color: rgba(255,255,255,0.92);
       font-size: 11px;
-      white-space: nowrap;
       margin-right: 6px;
-      max-width: 100%;
     }
-
-    /* Recent panel */
-    .recent-body{ padding: 12px 16px 16px 16px; }
-    .recent{
-      max-height: 150px;
-      overflow: auto;
-      padding-right: 6px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.18);
-      padding: 10px 12px;
-    }
-    .recent ul{ margin: 0; padding-left: 18px; }
-    .recent li{ margin: 8px 0; color: var(--muted); line-height: 1.35; white-space: normal; }
 
     /* Column widths */
     .col-pos{ width: 56px; }
@@ -247,10 +194,23 @@
     .col-gd{ width: 64px; }
     .col-mini{ width: 64px; }
 
+    /* Recent */
+    .recent-body{ padding: 12px 16px 16px 16px; }
+    .recent{
+      max-height: 150px;
+      overflow: auto;
+      padding: 10px 12px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+    }
+    .recent ul{ margin:0; padding-left:18px; }
+    .recent li{ margin:8px 0; white-space: normal; color: var(--muted); }
+
     /* Leader highlights */
-    .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); } /* gold */
-    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); } /* silver-ish */
-    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }  /* bronze-ish (red) */
+    .leader-1{ box-shadow: inset 4px 0 0 rgba(245,158,11,0.95); }
+    .leader-2{ box-shadow: inset 4px 0 0 rgba(255,255,255,0.55); }
+    .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
   </style>
 </head>
 
@@ -259,17 +219,20 @@
     <div class="header-left">
       <h1>St James' PTA World Cup 2026 Goal Sweepstake</h1>
       <div class="meta">
-        <div>Counts goals in normal time + extra time. Penalty shootout goals are excluded.</div>
+        <div>
+          Winner decided by Highest Team Total Goals → Team Total Goal Diff → Weakest combo pre‑tournament.<br>
+          Goals count in Normal Time + Extra Time only. Penalty shootout goals are excluded.
+        </div>
         <div id="updated" class="small">Loading…</div>
       </div>
     </div>
 
-    <!-- Badge in top-right (local file you added to repo root) -->
-   <img class="school-badge" src="./st.-james.png" alt="St James' RC Primary School badge" />
+    <!-- Badge image only -->
+    <img src="./st.-james.png" alt="St James' RC Primary School" class="school-badge">
   </div>
 
   <div class="grid">
-    <!-- LEFT: Ticket League Table (top-left aligned with recent) -->
+    <!-- LEFT: Ticket League Table -->
     <section>
       <h2>Ticket League Table</h2>
       <input id="search" class="search" placeholder="Search by owner, ticket number, or team…" />
@@ -293,14 +256,11 @@
       </div>
     </section>
 
-    <!-- RIGHT: Recent + Goals by Team stacked (no gap / no overlap) -->
+    <!-- RIGHT: Recent + Goals by Team -->
     <div class="right-stack">
       <section>
         <h2>Recently applied finished matches</h2>
         <div class="recent-body">
-          <div class="small" style="margin-bottom:10px;">
-            Last 5 <code>FINISHED</code> matches involving sweepstake teams (FT + ET if applicable)
-          </div>
           <div class="recent" id="recent"></div>
         </div>
       </section>
@@ -323,161 +283,92 @@
             </table>
           </div>
         </div>
-
-        <div class="small" style="margin:0 16px 16px 16px;">
-          Tip: if a team name doesn't match the data provider naming, update <code>data/team_name_map.json</code>.
-        </div>
       </section>
     </div>
   </div>
 
-<script>
-  // Cache-bust so you never need ?v=1 again
-  const CACHE_BUST = `?t=${Date.now()}`;
-  const TEAMS_URL   = `./standings/teams.json${CACHE_BUST}`;
-  const RECENT_URL  = `./standings/recent_finished.json${CACHE_BUST}`;
-  const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
+  <script>
+    const CACHE_BUST = `?t=${Date.now()}`;
+    const TEAMS_URL   = `./standings/teams.json${CACHE_BUST}`;
+    const RECENT_URL  = `./standings/recent_finished.json${CACHE_BUST}`;
+    const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
 
-  function esc(s){
-    return String(s).replace(/[&<>"]/g, m => ({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;'
-    }[m] || m));
-  }
-
-  function renderStandings(rows){
-    const tbody = document.querySelector('#standingsTable tbody');
-    tbody.innerHTML = '';
-
-    for(const r of rows){
-      const teamsPills = (r.teams||[]).map(t => `<span class="pill">${esc(t)}</span>`).join('');
-      const tr = document.createElement('tr');
-
-      if (r.position === 1) tr.classList.add('leader-1');
-      if (r.position === 2) tr.classList.add('leader-2');
-      if (r.position === 3) tr.classList.add('leader-3');
-
-      const teamsTitle = esc((r.teams || []).join(' / '));
-
-      tr.innerHTML = `
-        <td>${r.position}</td>
-        <td>${r.ticket}</td>
-        <td>${esc(r.owner)}</td>
-        <td class="teams" title="${teamsTitle}">${teamsPills}</td>
-        <td>${r.goals}</td>
-        <td>${r.gd}</td>
-      `;
-      tbody.appendChild(tr);
+    function esc(s){
+      return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
     }
-  }
 
-  function renderTeams(rows){
-    const tbody = document.querySelector('#teamsTable tbody');
-    tbody.innerHTML = '';
-    for(const r of rows){
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td title="${esc(r.team)}">${esc(r.team)}</td>
-        <td>${r.gf}</td>
-        <td>${r.ga}</td>
-        <td>${r.gd}</td>
-        <td>${r.played}</td>
-      `;
-      tbody.appendChild(tr);
+    function renderStandings(rows){
+      const tbody = document.querySelector('#standingsTable tbody');
+      tbody.innerHTML = '';
+      for(const r of rows){
+        const tr = document.createElement('tr');
+        if (r.position === 1) tr.classList.add('leader-1');
+        if (r.position === 2) tr.classList.add('leader-2');
+        if (r.position === 3) tr.classList.add('leader-3');
+        tr.innerHTML = `
+          <td>${r.position}</td>
+          <td>${r.ticket}</td>
+          <td>${esc(r.owner)}</td>
+          <td class="teams" title="${esc(r.teams.join(' / '))}">${r.teams.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</td>
+          <td>${r.goals}</td>
+          <td>${r.gd}</td>
+        `;
+        tbody.appendChild(tr);
+      }
     }
-  }
 
-  function fmtMatch(m){
-    const dt = m.utcDate ? new Date(m.utcDate) : null;
-    const when = dt ? dt.toLocaleString() : '';
-    const ft = `${m.ft.home}-${m.ft.away}`;
-    const et = m.et ? `, ET ${m.et.home}-${m.et.away}` : '';
-    return `${esc(m.home)} vs ${esc(m.away)} — FT ${ft}${et}${when ? ' ('+when+')' : ''}`;
-  }
-
-  function renderRecent(matches){
-    const el = document.getElementById('recent');
-    if(!matches || matches.length === 0){
-      el.innerHTML = '<div class="small">No finished matches applied yet.</div>';
-      return;
+    function renderTeams(rows){
+      const tbody = document.querySelector('#teamsTable tbody');
+      tbody.innerHTML = '';
+      for(const r of rows){
+        tbody.innerHTML += `<tr>
+          <td>${esc(r.team)}</td>
+          <td>${r.gf}</td><td>${r.ga}</td><td>${r.gd}</td><td>${r.played}</td>
+        </tr>`;
+      }
     }
-    el.innerHTML = '<ul>' + matches.map(m => `<li>${fmtMatch(m)}</li>`).join('') + '</ul>';
-  }
 
-  function buildStandings(tickets, teamsData){
-    const teamMap = new Map();
-    for(const t of (teamsData.teams || [])) teamMap.set(t.team, t);
-
-    const rows = (tickets || []).map(tk => {
-      const goals = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gf || 0), 0);
-      const gd    = (tk.teams || []).reduce((s,t)=> s + (teamMap.get(t)?.gd || 0), 0);
-      return {
-        ticket: tk.ticket,
-        owner: tk.owner,
-        teams: tk.teams,
-        goals,
-        gd,
-        rank: (tk.rank ?? tk.ticket)
-      };
-    });
-
-    rows.sort((a,b)=>{
-      if(b.goals !== a.goals) return b.goals - a.goals;
-      if(b.gd !== a.gd) return b.gd - a.gd;
-      return b.rank - a.rank;
-    });
-
-    rows.forEach((r,i)=> r.position = i+1);
-    return rows;
-  }
-
-  async function fetchJSON(url, fallback){
-    try{
-      const res = await fetch(url, {cache:'no-store'});
-      if(!res.ok) return fallback;
-      return await res.json();
-    }catch(e){
-      return fallback;
+    function renderRecent(matches){
+      const el = document.getElementById('recent');
+      if(!matches || !matches.length){
+        el.innerHTML = '<div class="small">No finished matches applied yet.</div>';
+        return;
+      }
+      el.innerHTML = '<ul>' + matches.map(m =>
+        `<li>${esc(m.home)} vs ${esc(m.away)} — FT ${m.ft.home}-${m.ft.away}${m.et ? `, ET ${m.et.home}-${m.et.away}` : ''}</li>`
+      ).join('') + '</ul>';
     }
-  }
 
-  let allStandings = [];
+    function buildStandings(tickets, teamsData){
+      const teamMap = new Map(teamsData.teams.map(t=>[t.team,t]));
+      const rows = tickets.map(t=>({
+        ticket:t.ticket,
+        owner:t.owner,
+        teams:t.teams,
+        goals:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gf||0),0),
+        gd:t.teams.reduce((s,x)=>s+(teamMap.get(x)?.gd||0),0),
+        rank:t.rank
+      }));
+      rows.sort((a,b)=>b.goals-a.goals||b.gd-a.gd||b.rank-a.rank);
+      rows.forEach((r,i)=>r.position=i+1);
+      return rows;
+    }
 
-  async function load(){
-    const [teamsData, recentData, tickets] = await Promise.all([
-      fetchJSON(TEAMS_URL,  {generated_at:null, teams: []}),
-      fetchJSON(RECENT_URL, {matches: []}),
-      fetchJSON(TICKETS_URL, [])
-    ]);
+    async function load(){
+      const [teams,recent,tickets] = await Promise.all([
+        fetch(TEAMS_URL).then(r=>r.json()),
+        fetch(RECENT_URL).then(r=>r.json()).catch(()=>({matches:[]})),
+        fetch(TICKETS_URL).then(r=>r.json())
+      ]);
+      document.getElementById('updated').textContent =
+        teams.generated_at ? `Last updated: ${teams.generated_at}` : 'Last updated: unknown';
+      renderTeams(teams.teams);
+      renderRecent(recent.matches);
+      renderStandings(buildStandings(tickets, teams));
+    }
 
-    document.getElementById('updated').textContent =
-      teamsData.generated_at ? `Last updated: ${teamsData.generated_at}` : 'Last updated: unknown';
-
-    const teams = (teamsData.teams || []).slice().sort(
-      (a,b)=> (b.gf - a.gf) || (b.gd - a.gd) || a.team.localeCompare(b.team)
-    );
-    renderTeams(teams);
-
-    renderRecent((recentData && recentData.matches) ? recentData.matches : []);
-
-    allStandings = buildStandings(tickets, teamsData);
-    renderStandings(allStandings);
-  }
-
-  document.getElementById('search').addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    if(!q){ renderStandings(allStandings); return; }
-    renderStandings(allStandings.filter(r =>
-      String(r.ticket).includes(q) ||
-      String(r.owner).toLowerCase().includes(q) ||
-      (r.teams || []).some(t => String(t).toLowerCase().includes(q))
-    ));
-  });
-
-  load();
-  setInterval(load, 120000);
-</script>
+    load();
+    setInterval(load, 120000);
+  </script>
 </body>
 </html>
