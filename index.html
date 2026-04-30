@@ -149,7 +149,7 @@
       box-shadow: 0 0 0 4px rgba(245,158,11,0.18);
     }
 
-    /* Right stack: recent + goals */
+    /* Right stack */
     .right-stack{
       display: flex;
       flex-direction: column;
@@ -160,7 +160,7 @@
     .table-wrap{ padding: 0 16px 16px 16px; }
     .table-scroll{
       overflow-y: auto;
-      overflow-x: hidden; /* no horizontal scroll */
+      overflow-x: hidden; /* no horizontal scrolling */
       border-radius: var(--radius2);
       border: 1px solid var(--border);
       background: rgba(0,0,0,0.18);
@@ -215,7 +215,7 @@
     /* Column widths */
     .col-pos{ width: 56px; }
     .col-ticket{ width: 76px; }
-    .col-owner{ width: 180px; } /* owner is high priority */
+    .col-owner{ width: 180px; } /* owner high priority */
     .col-goals{ width: 72px; }
     .col-gd{ width: 64px; }
     .col-mini{ width: 64px; }
@@ -244,11 +244,21 @@
     .leader-3{ box-shadow: inset 4px 0 0 rgba(220,38,38,0.92); }
 
     /* === Column hiding rules (no horizontal scroll) ===
-       Priority visible: Pos, Owner, Goals, GD (ALWAYS)
-       Hide only: Ticket first, then Teams (per your priority list)
+       Always visible: Pos, Owner, Goals, GD
+       Hide order (lowest priority first): Ticket, then Teams
     */
     #standingsTable.hide-ticket [data-col="ticket"]{ display:none; }
     #standingsTable.hide-teams  [data-col="teams"]{ display:none; }
+
+    /* === Goals-by-team grouped headers === */
+    .group-row td{
+      background: rgba(11,18,32,0.98) !important;
+      color: rgba(255,255,255,0.88);
+      font-weight: 780;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
 
     /* Tooltip bubble */
     .row-tooltip{
@@ -285,8 +295,9 @@
       </div>
     </div>
 
+    <!-- Badge image only (no link) -->
     <div class="header-badge">
-      <img class="badge-right" src="./st.-james.png" alt="St James' RC Primary School badge" />
+      <img class="badge-right" src="./st.-james.png" alt="St James badge" />
     </div>
   </div>
 
@@ -351,9 +362,10 @@
 
 <script>
   const CACHE_BUST = `?t=${Date.now()}`;
-  const TEAMS_URL   = `./standings/teams.json${CACHE_BUST}`;
-  const RECENT_URL  = `./standings/recent_finished.json${CACHE_BUST}`;
-  const TICKETS_URL = `./data/tickets.json${CACHE_BUST}`;
+  const TEAMS_URL    = `./standings/teams.json${CACHE_BUST}`;
+  const RECENT_URL   = `./standings/recent_finished.json${CACHE_BUST}`;
+  const TICKETS_URL  = `./data/tickets.json${CACHE_BUST}`;
+  const TEAMMAP_URL  = `./data/team_name_map.json${CACHE_BUST}`;
 
   function esc(s){
     return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
@@ -371,10 +383,8 @@
     tooltipEl.className = 'row-tooltip';
     document.body.appendChild(tooltipEl);
 
-    // Prevent taps on tooltip from closing it
     tooltipEl.addEventListener('pointerdown', (e) => e.stopPropagation());
 
-    // Tap elsewhere closes if pinned
     document.addEventListener('pointerdown', (e) => {
       if(!tooltipPinned) return;
       if(tooltipEl && tooltipEl.contains(e.target)) return;
@@ -382,7 +392,6 @@
       hideTooltip();
     });
 
-    // Scrolling closes (mobile-friendly)
     window.addEventListener('scroll', () => {
       if(tooltipPinned){
         tooltipPinned = false;
@@ -413,13 +422,14 @@
     const hideTeams  = table.classList.contains('hide-teams');
 
     const rows = [];
-    if(hideTeams)  rows.push(['Teams', tr.dataset.teams]);
-    if(hideTicket) rows.push(['Ticket', tr.dataset.ticket]);
+    // Only show hidden fields
+    if(hideTeams)  rows.push(['Teams', tr.dataset.teams || '']);
+    if(hideTicket) rows.push(['Ticket', tr.dataset.ticket || '']);
 
-    // If nothing hidden, show both anyway (useful on desktop hover)
+    // If nothing hidden, do nothing (per your requirement)
     if(rows.length === 0){
-      rows.push(['Teams', tr.dataset.teams]);
-      rows.push(['Ticket', tr.dataset.ticket]);
+      hideTooltip();
+      return;
     }
 
     tip.innerHTML = `<div class="row">${
@@ -445,15 +455,13 @@
     const table = document.querySelector('#standingsTable');
     if(!wrap || !table) return;
 
-    // Reset (and clear legacy)
     table.classList.remove('hide-ticket','hide-teams','hide-gd');
 
     const w = wrap.clientWidth;
 
-    // These thresholds are tuned so Owner/Goals/GD remain readable
-    // If it feels too aggressive/weak, tweak numbers slightly.
-    if(w < 520) table.classList.add('hide-ticket');  // hide lowest priority first
-    if(w < 430) table.classList.add('hide-teams');   // then hide teams
+    // Tune these if you want Ticket/Teams to remain visible longer/shorter
+    if(w < 520) table.classList.add('hide-ticket');
+    if(w < 430) table.classList.add('hide-teams');
   }
 
   function renderStandings(rows){
@@ -467,11 +475,11 @@
       if(r.position===2) tr.classList.add('leader-2');
       if(r.position===3) tr.classList.add('leader-3');
 
-      const teamsTitle = (r.teams || []).join(' / ');
-      const pills = (r.teams || []).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+      const teamsTitle = (r.displayTeams || r.teams || []).join(' / ');
+      const pills = (r.displayTeams || r.teams || []).map(t => `<span class="pill">${esc(t)}</span>`).join('');
 
-      tr.dataset.ticket = r.ticket;
-      tr.dataset.teams = teamsTitle;
+      tr.dataset.ticket = String(r.ticket ?? '');
+      tr.dataset.teams  = teamsTitle;
 
       tr.innerHTML = `
         <td data-col="pos">${r.position}</td>
@@ -482,14 +490,14 @@
         <td data-col="gd">${r.gd}</td>
       `;
 
-      // Desktop hover
+      // Desktop hover: show tooltip only if columns are hidden
       tr.addEventListener('mouseenter', () => showRowTooltip(tr, false));
       tr.addEventListener('mouseleave', () => { if(!tooltipPinned) hideTooltip(); });
 
-      // Mobile tap (keep tooltip open until scroll/tap elsewhere)
+      // Mobile tap
       tr.addEventListener('pointerdown', (e) => {
         e.preventDefault();
-        e.stopPropagation();     // prevents immediate close
+        e.stopPropagation();
         tooltipPinned = true;
         showRowTooltip(tr, true);
       });
@@ -498,20 +506,6 @@
     }
 
     adjustStandingsColumns();
-  }
-
-  function renderTeams(rows){
-    const tbody = document.querySelector('#teamsTable tbody');
-    tbody.innerHTML = '';
-    for(const r of rows){
-      tbody.innerHTML += `<tr>
-        <td title="${esc(r.team)}">${esc(r.team)}</td>
-        <td>${r.gf}</td>
-        <td>${r.ga}</td>
-        <td>${r.gd}</td>
-        <td>${r.played}</td>
-      </tr>`;
-    }
   }
 
   function renderRecent(matches){
@@ -525,19 +519,91 @@
     ).join('') + '</ul>';
   }
 
-  function buildStandings(tickets, teamsData){
+  function buildPotMapFromTickets(mappedTickets){
+    const pot1 = new Set();
+    const pot2 = new Set();
+    const pot3 = new Set();
+
+    for(const t of (mappedTickets || [])){
+      const arr = t.mappedTeams || t.teams || [];
+      if(arr[0]) pot1.add(arr[0]);
+      if(arr[1]) pot2.add(arr[1]);
+      if(arr[2]) pot3.add(arr[2]);
+    }
+    return { pot1, pot2, pot3 };
+  }
+
+  function renderTeamsByPot(teamsRows, potMap){
+    const tbody = document.querySelector('#teamsTable tbody');
+    tbody.innerHTML = '';
+
+    // Sort: GF desc, GD desc, Least Played asc
+    const sortFn = (a,b) =>
+      (b.gf - a.gf) ||
+      (b.gd - a.gd) ||
+      (a.played - b.played) ||
+      String(a.team).localeCompare(String(b.team));
+
+    function addGroup(title, teamNamesSet){
+      const hdr = document.createElement('tr');
+      hdr.className = 'group-row';
+      hdr.innerHTML = `<td colspan="5">${title}</td>`;
+      tbody.appendChild(hdr);
+
+      const rows = (teamsRows || [])
+        .filter(r => teamNamesSet.has(r.team))
+        .slice()
+        .sort(sortFn);
+
+      if(rows.length === 0){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="5" class="small">No teams found for this pot.</td>`;
+        tbody.appendChild(tr);
+        return;
+      }
+
+      for(const r of rows){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td title="${esc(r.team)}">${esc(r.team)}</td>
+          <td>${r.gf}</td>
+          <td>${r.ga}</td>
+          <td>${r.gd}</td>
+          <td>${r.played}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    addGroup('Pot 1', potMap.pot1);
+    addGroup('Pot 2', potMap.pot2);
+    addGroup('Pot 3', potMap.pot3);
+  }
+
+  function buildStandings(tickets, teamsData, nameMap){
     const teamMap = new Map((teamsData.teams||[]).map(t => [t.team, t]));
-    const rows = (tickets||[]).map(t => ({
+
+    // Map ticket team names to provider names (so totals match teams.json)
+    const mappedTickets = (tickets||[]).map(t => {
+      const displayTeams = t.teams || [];
+      const mappedTeams = displayTeams.map(n => (nameMap && nameMap[n]) ? nameMap[n] : n);
+      return { ...t, displayTeams, mappedTeams };
+    });
+
+    const rows = mappedTickets.map(t => ({
       ticket: t.ticket,
       owner: t.owner,
-      teams: t.teams || [],
-      goals: (t.teams||[]).reduce((s,x)=> s + (teamMap.get(x)?.gf || 0), 0),
-      gd:    (t.teams||[]).reduce((s,x)=> s + (teamMap.get(x)?.gd || 0), 0),
+      teams: t.mappedTeams,
+      displayTeams: t.displayTeams,
+      goals: t.mappedTeams.reduce((s,x)=> s + (teamMap.get(x)?.gf || 0), 0),
+      gd:    t.mappedTeams.reduce((s,x)=> s + (teamMap.get(x)?.gd || 0), 0),
       rank:  t.rank ?? t.ticket
     }));
+
     rows.sort((a,b)=> b.goals-a.goals || b.gd-a.gd || b.rank-a.rank);
     rows.forEach((r,i)=> r.position=i+1);
-    return rows;
+
+    return { standings: rows, mappedTickets };
   }
 
   async function fetchJSON(url, fallback){
@@ -551,20 +617,24 @@
   }
 
   async function load(){
-    const [teams, recent, tickets] = await Promise.all([
-      fetchJSON(TEAMS_URL,  {generated_at:null, teams: []}),
-      fetchJSON(RECENT_URL, {matches: []}),
-      fetchJSON(TICKETS_URL, [])
+    const [teamsData, recentData, tickets, nameMap] = await Promise.all([
+      fetchJSON(TEAMS_URL,   {generated_at:null, teams: []}),
+      fetchJSON(RECENT_URL,  {matches: []}),
+      fetchJSON(TICKETS_URL, []),
+      fetchJSON(TEAMMAP_URL, {})
     ]);
 
     document.getElementById('updated').textContent =
-      teams.generated_at ? `Last updated: ${teams.generated_at}` : 'Last updated: unknown';
+      teamsData.generated_at ? `Last updated: ${teamsData.generated_at}` : 'Last updated: unknown';
 
-    renderTeams(teams.teams || []);
-    renderRecent((recent && recent.matches) ? recent.matches : []);
+    renderRecent((recentData && recentData.matches) ? recentData.matches : []);
 
-    allStandings = buildStandings(tickets, teams);
+    const built = buildStandings(tickets, teamsData, nameMap);
+    allStandings = built.standings;
     renderStandings(allStandings);
+
+    const potMap = buildPotMapFromTickets(built.mappedTickets);
+    renderTeamsByPot(teamsData.teams || [], potMap);
   }
 
   // Search (filters ticket table)
@@ -574,6 +644,7 @@
     const filtered = allStandings.filter(r =>
       String(r.ticket).includes(q) ||
       String(r.owner).toLowerCase().includes(q) ||
+      (r.displayTeams || []).some(t => String(t).toLowerCase().includes(q)) ||
       (r.teams || []).some(t => String(t).toLowerCase().includes(q))
     );
     renderStandings(filtered);
